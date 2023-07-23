@@ -26,5 +26,5 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
--- ls.config.setup({ enable_autosnippets = true })  PERIGOSO, MAS MANEIRO!!
+ls.config.setup({ enable_autosnippets = true })
 require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/after/snippets/" }
