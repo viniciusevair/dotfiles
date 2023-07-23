@@ -55,11 +55,11 @@ set.expandtab = true
 set.softtabstop = 4
     -- C indentation helper
 set.smartindent = true
-    -- Wraping lines
+    -- Wraping lines.
 set.wrap = true
-    -- Bash-like completion
+    -- Bash-like completion.
 vim.cmd [[set wildmode=longest,list]]
-    -- test
+    -- Not in the mood for listchars rn, but I'll leave it here for later.
 set.list = false
 vim.opt.listchars:append "lead:⋅"
 
@@ -73,7 +73,18 @@ vim.cmd [[set encoding=utf-8]]
 vim.cmd [[set fileencoding=utf-8]]
 
 --
+-- Don't know exactly how to label these
+set.virtualedit = "block"
+
+--
 -- Folding
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldlevel = 999
+
+--
+-- Filetype specifics
+    -- HTML
+vim.cmd [[autocmd FileType html setlocal ts=2 sts=2 sw=2]]
+    -- JS
+vim.cmd [[autocmd FileType javascript setlocal ts=2 sts=2 sw=2]]
