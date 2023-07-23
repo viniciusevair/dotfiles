@@ -20,8 +20,8 @@ vim.keymap.set("n", "<leader>z", ":bd<CR>")
     -- Write to current file.
 vim.keymap.set("n", "<C-s>", ":w<CR>")
     -- Open this file.
-vim.keymap.set("n", "ø", ":e ~/.config/nvim/lua/evair/remap.lua<CR>")
-vim.keymap.set("n", "þ", ":e ~/.config/nvim/after/snippets/<CR>")
+vim.keymap.set("n", "ø", ":e ~/.config/nvim/lua/evair<CR>")
+vim.keymap.set("n", "þ", ":e ~/.config/nvim/after<CR>")
 
 -- Move to line edges
 vim.keymap.set("i", "<A-l>", "<Esc>A")
@@ -36,6 +36,7 @@ vim.keymap.set({"n", "v"}, "<A-E>", "gE")
 -- Move to start/end of last visual selection
 vim.keymap.set("n", "<C-,>", "'<")
 vim.keymap.set("n", "<C-.>", "'>")
+vim.keymap.set("n", "<C-;>", "'^")
 
 -- Move to function start/end
 vim.keymap.set({"n", "v"}, "<A-k>", "?^[^ \\t#/-]<CR>")
@@ -72,7 +73,12 @@ vim.keymap.set({"i", "t"}, "<C-a>", "->")
 vim.keymap.set("n", "©", "ct)")
 vim.keymap.set("n", "ð", "dt)")
     -- Cut text till underscore
-vim.keymap.set("n", "<C-c>", "ct_")
+vim.keymap.set("n", "<leader>c", "ct_")
+    -- Colorpicker shortcut
+vim.keymap.set("n", "<C-c>", ":CccPick<CR>")
+vim.keymap.set("i", "<C-c>", " <Esc>:CccPick<CR>")
+    -- <CR> tags helper
+vim.keymap.set("i", "<C-CR>", "<CR><Esc>O")
 
 -- Formatting.
     -- Fix indentation inside a function.
@@ -82,7 +88,6 @@ vim.keymap.set("n", "§", "migg=G'izz")
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 
 -- Folding remaps
-vim.keymap.set("n", "za", "zAzt")
 vim.keymap.set("n", "zr", "zR")
 vim.keymap.set("n", "zR", "zr")
 vim.keymap.set("n", "zm", "zM")
@@ -91,7 +96,3 @@ vim.keymap.set("n", "zM", "zm")
 -- Make J and K part of jumplist
 vim.keymap.set({"n", "v"}, "j", [[v:count ? (v:count >=3 ? "m'" . v:count : "") . "j" : "j"]], { expr = true })
 vim.keymap.set({"n", "v"}, "k", [[v:count ? (v:count >= 3 ? "m'" . v:count : "") . "k" : "k"]], { expr = true })
-
--- Temp
-vim.keymap.set("i", "<C-z>", "struct file_header_t")
-vim.keymap.set("i", "<C-x>", "struct list_t")
