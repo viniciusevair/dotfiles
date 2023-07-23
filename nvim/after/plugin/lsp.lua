@@ -37,16 +37,7 @@ local lspkind = require('lspkind')
 local cmp_config = lsp.defaults.cmp_config({
     window = {
         completion = cmp.config.window.bordered({
-            border = {
-                "◈",
-                "—",
-                "◈",
-                " ",
-                "◈",
-                "—",
-                "◈",
-                " ",
-            },
+            border = { "◈", "—", "◈", " ", "◈", "—", "◈", " ", },
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             col_offset = -3,
             side_padding = 0,
@@ -64,6 +55,7 @@ local cmp_config = lsp.defaults.cmp_config({
         {name = "buffer", keyword_length = 6},
         {name = "nvim_lua", keyword_length = 2},
     },
+
     formatting = {
         fields = { "abbr", "kind", "menu" },
         format = lspkind.cmp_format({
@@ -102,8 +94,6 @@ local cmp_config = lsp.defaults.cmp_config({
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<tab>'] = nil,
-        ['S-tab>'] = nil,
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
