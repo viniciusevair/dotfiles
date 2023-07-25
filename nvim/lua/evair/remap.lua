@@ -82,7 +82,9 @@ vim.keymap.set("i", "<C-CR>", "<CR><Esc>O")
 
 -- Formatting.
     -- Fix indentation inside a function.
-vim.keymap.set("n", "§", "migg=G'izz")
+vim.keymap.set("n", "§", "mzgg=G`zzz")
+    -- Remove the space before current word.
+vim.keymap.set("n", "æ", "mzEBhx`zh")
 
 -- Yank to normal register
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
