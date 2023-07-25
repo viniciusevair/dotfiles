@@ -59,6 +59,7 @@ return require('packer').startup(function(use)
     use 'prettier/vim-prettier'
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
+    use 'tpope/vim-repeat'
 
     -- Git integration
     use 'tpope/vim-fugitive'
