@@ -1,15 +1,10 @@
-require('mason.settings').set({
-    ui = {
-        border = 'rounded'
-    }
-})
+local lsp = require('lsp-zero').preset({})
+local lspkind = require('lspkind')
+local cmp = require('cmp')
 
-local lsp = require("lsp-zero")
+lsp.extend_cmp()
 
-lsp.preset("recommended")
-
--- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
+lsp.configure('lua_ls', {
     settings = {
         Lua = {
             diagnostics = {
@@ -19,22 +14,14 @@ lsp.configure('lua-language-server', {
     }
 })
 
-lsp.set_preferences({
-    suggest_lsp_servers = false,
-    sign_icons = {
-        error = '│',
-        warn  = '│',
-        hint  = '│',
-        info  = '│'
-    }
+lsp.set_sign_icons({
+    error = '│',
+    warn  = '│',
+    hint  = '│',
+    info  = '│'
 })
 
-lsp.setup()
-
-local cmp = require('cmp')
-local lspkind = require('lspkind')
-
-local cmp_config = lsp.defaults.cmp_config({
+cmp.setup({
     window = {
         completion = cmp.config.window.bordered({
             border = { "◈", "—", "◈", " ", "◈", "—", "◈", " ", },
@@ -44,7 +31,7 @@ local cmp_config = lsp.defaults.cmp_config({
         }),
 
         documentation = cmp.config.window.bordered({
-            border = "single",
+            border = { "◈", "—", "◈", " ", "◈", "—", "◈", " ", },
         })
     },
 
@@ -79,7 +66,7 @@ local cmp_config = lsp.defaults.cmp_config({
                 nvim_lsp = "[LSP]",
                 luasnip = "[LuaSnip]",
                 nvim_lua = "[Lua]",
-                latex_symbols = "[Latex]",
+                latex_symbols = "[LaTeX]",
             })
         }),
     },
@@ -91,16 +78,19 @@ local cmp_config = lsp.defaults.cmp_config({
         }
     },
 
-    mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
+    mapping = {
+        ['<CR>'] = cmp.mapping.confirm({select = true}),
+        ['<Tab>'] = cmp.mapping.confirm({select = true}),
+    }
 })
 
-cmp.setup(cmp_config)
+lsp.on_attach(function(client, bufnr)
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    lsp.default_keymaps({buffer = bufnr})
+end)
 
-vim.diagnostic.config({
-    virtual_text = false,
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    handlers = {lsp.default_setup},
 })

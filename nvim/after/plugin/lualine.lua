@@ -2,8 +2,8 @@ require('lualine').setup {
     options = {
         icons_enabled = true,
         theme = 'gruvbox-material',
-        component_separators = { left = '◈', right = '◈'}, --{ left = '', right = ''},
-        section_separators = { left = '', right = ''}, --{ left = '', right = ''},
+        component_separators = { left = '◈', right = '◈'},
+        section_separators = { left = '', right = ''},
         always_divide_middle = true,
         globalstatus = true,
         refresh = {
@@ -49,21 +49,20 @@ require('lualine').setup {
                 packer = 'Packer',
                 fzf = 'FZF',
                 alpha = 'Alpha'
-            }, -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
-            symbols = {
-                modified = ' ●',      -- Text to show when the buffer is modified
-                alternate_file = '# ', -- Text to show to identify the alternate file
-                directory =  '',     -- Text to show when the buffer is a directory
             },
-        },
+            symbols = {
+                modified = ' ●',
+                alternate_file = '# ',
+                directory =  '',
+            },
+        }},
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {'tabs'}
     },
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {'tabs'}
-},
-winbar = {},
-inactive_winbar = {},
-extensions = {}
+    winbar = {},
+    inactive_winbar = {},
+    extensions = {}
 }
