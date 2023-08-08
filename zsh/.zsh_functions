@@ -2,6 +2,11 @@ take () {
     mkdir -p $1 && cd $1
 }
 
+jcomp () {
+    javac "$1"
+    java $(basename "$1" .java)
+}
+
 comp () {
     gcc -Wall -g $1 -o $(basename "$1" .c)
 }
