@@ -11,77 +11,34 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
+require("lazy").setup({
     -- Colorschemes --
     {
-        'savq/melange',
+        "savq/melange",
         lazy = false,
         priority = 1000,
     },
-    { 'junegunn/seoul256.vim', event = "VeryLazy" },
+    { "junegunn/seoul256.vim",    event = "VeryLazy" },
 
     -- Plugins --
 
     -- Graphic plugins
     -- HUD
-    { 'nvim-lualine/lualine.nvim' },
+    { "nvim-lualine/lualine.nvim" },
     {
-        'nvim-tree/nvim-web-devicons',
-        lazy=true,
+        "nvim-tree/nvim-web-devicons",
+        lazy = true,
         override = {
             zsh = {
                 icon = "",
-                name = "Zsh"
-            }
+                name = "Zsh",
+            },
         },
         color_icons = true,
         default = true,
     },
     {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        opts = {
-            lsp = {
-                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-                override = {
-                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                    ["vim.lsp.util.stylize_markdown"] = true,
-                    ["cmp.entry.get_documentation"] = true,
-                },
-            },
-            -- you can enable a preset for easier configuration
-            presets = {
-                bottom_search = false, -- use a classic bottom cmdline for search
-                command_palette = true, -- position the cmdline and popupmenu together
-                long_message_to_split = true, -- long messages will be sent to a split
-                lsp_doc_border = true, -- add a border to hover docs and signature help
-            },
-            routes = {
-                {
-                    view = "notify",
-                    filter = { event = "msg_showmode" },
-                },
-            },
-        },
-
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            { 
-                "rcarriga/nvim-notify",
-                keys = {
-                    {
-                        "<leader>u",
-                        function()
-                            require("notify").dismiss({ silent = true, pending = true })
-                        end,
-                        desc = "Dismiss all Notifications",
-                    },
-                },
-            },
-        },
-    }, 
-    {
-        'lukas-reineke/indent-blankline.nvim',
+        "lukas-reineke/indent-blankline.nvim",
         opts = {
             char = "│",
             show_current_context = true,
@@ -95,33 +52,32 @@ local plugins = {
     {
         "rrethy/vim-hexokinase",
         build = "make",
-        config = function ()
-            vim.g['Hexokinase_virtualText'] = '◆'
+        config = function()
+            vim.g["Hexokinase_virtualText"] = "◆"
         end,
     },
     -- Treesitter
     {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
         config = function()
-            require("nvim-treesitter.configs").setup {
+            require("nvim-treesitter.configs").setup({
                 sync_install = false,
                 auto_install = true,
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = false,
                 },
-            }
+            })
         end,
     },
-
     {
-        'nvim-treesitter/nvim-treesitter-context',
+        "nvim-treesitter/nvim-treesitter-context",
         event = "VeryLazy",
     },
     -- Colorpicker
     {
-        'uga-rosa/ccc.nvim',
+        "uga-rosa/ccc.nvim",
 
         opts = {
             highlighter = {
@@ -135,96 +91,129 @@ local plugins = {
                 row = 1,
                 col = 1,
                 style = "minimal",
-                border = { "◈", "—", "◈", " ", "◈", "—", "◈", " ", },
+                border = { "◈", "—", "◈", " ", "◈", "—", "◈", " " },
             },
-        }
+        },
     },
 
     -- Navigation
     {
-        'nvim-telescope/telescope.nvim',
+        "nvim-telescope/telescope.nvim",
         version = "0.1.1",
         event = "VeryLazy",
         dependencies = {
-            'nvim-lua/plenary.nvim'
+            "nvim-lua/plenary.nvim",
         },
         config = function()
-            local builtin = require('telescope.builtin')
-            vim.keymap.set('n', '<leader>f', builtin.find_files, {})
-            vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+            local builtin = require("telescope.builtin")
+            vim.keymap.set("n", "<leader>f", builtin.find_files, {})
+            vim.keymap.set("n", "<C-p>", builtin.git_files, {})
         end,
     },
 
     {
-        'akinsho/toggleterm.nvim',
+        "akinsho/toggleterm.nvim",
         version = "*",
         opts = {
             direction = "float",
             float_opts = {
-                border = { "◈", "—", "◈", " ", "◈", "—", "◈", " ", },
-            }
-        }
+                border = { "◈", "—", "◈", " ", "◈", "—", "◈", " " },
+            },
+        },
     },
 
     -- LaTeX
-    { 'lervag/vimtex', ft = "tex", },
+    { "lervag/vimtex",         ft = "tex" },
 
     -- Formatting
-    { 'prettier/vim-prettier', ft = {"html", "css", "js"} },
-    { 'tpope/vim-surround' },
-    { 'tpope/vim-commentary' },
-    { 'tpope/vim-repeat' },
+    { "prettier/vim-prettier", ft = { "html", "css", "js" } },
+    { "tpope/vim-surround" },
+    { "tpope/vim-commentary" },
+    { "tpope/vim-repeat" },
 
     -- Git integration
     -- { 'tpope/vim-fugitive' },
 
     -- LSP dump
     {
-        'VonHeikemen/lsp-zero.nvim',
+        "VonHeikemen/lsp-zero.nvim",
         lazy = true,
         config = false,
     },
     {
-        'williamboman/mason.nvim',
+        "williamboman/mason.nvim",
         opts = {
             ui = {
                 icons = {
                     package_installed = "",
                     package_pending = "",
-                    package_uninstalled = ""
+                    package_uninstalled = "",
                 },
                 height = 0.75,
-                border = { "◈", "—", "◈", " ", "◈", "—", "◈", " ", },
+                border = { "◈", "—", "◈", " ", "◈", "—", "◈", " " },
             },
         },
     },
-    {'williamboman/mason-lspconfig.nvim'},
+    { "williamboman/mason-lspconfig.nvim" },
     {
-        'neovim/nvim-lspconfig',
+        "neovim/nvim-lspconfig",
         dependencies = {
-            {'hrsh7th/cmp-nvim-lsp'},
-        }
+            { "hrsh7th/cmp-nvim-lsp" },
+        },
     },
     -- Autocompletion
     {
-        'hrsh7th/nvim-cmp',
+        "hrsh7th/nvim-cmp",
         dependencies = {
             {
-                'L3MON4D3/LuaSnip',
+                "L3MON4D3/LuaSnip",
                 version = "1.*",
                 config = function()
-                    require("luasnip").config.set_config {
-                        history = true
-                    }
+                    require("luasnip").config.set_config({
+                        history = true,
+                    })
                     local ls = require("luasnip")
-                    vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
-                    vim.keymap.set({"i", "s"}, "<C-D>", function() ls.jump(-1) end, {silent = true})
+                    vim.keymap.set({ "i", "s" }, "<C-L>", function()
+                        ls.jump(1)
+                    end, { silent = true })
+                    vim.keymap.set({ "i", "s" }, "<C-D>", function()
+                        ls.jump(-1)
+                    end, { silent = true })
                 end,
             },
-            {'saadparwaiz1/cmp_luasnip'}
+            { "saadparwaiz1/cmp_luasnip" },
         },
     },
-    {'onsails/lspkind.nvim'},
-}
+    { "onsails/lspkind.nvim" },
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            local null_ls = require("null-ls")
 
-require("lazy").setup(plugins)
+            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.stylua,
+                    null_ls.builtins.diagnostics.mypy,
+                    null_ls.builtins.diagnostics.ruff,
+                    null_ls.builtins.formatting.black,
+                },
+                -- you can reuse a shared lspconfig on_attach callback here
+                on_attach = function(client, bufnr)
+                    if client.supports_method("textDocument/formatting") then
+                        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+                        vim.api.nvim_create_autocmd("BufWritePre", {
+                            group = augroup,
+                            buffer = bufnr,
+                            callback = function()
+                                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                                -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
+                                vim.lsp.buf.format({ async = false })
+                            end,
+                        })
+                    end
+                end,
+            })
+        end,
+    },
+})
