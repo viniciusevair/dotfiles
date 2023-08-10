@@ -1,5 +1,5 @@
 -- vim:foldmethod=marker:foldlevel=0
--- press <za> to open each folding individually, or <zr> to open all foldings
+-- Press <za> to open each folding individually, or <zr> to open all foldings
 
 -- {{{ Lazy.nvim bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
