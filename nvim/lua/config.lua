@@ -14,7 +14,7 @@ set.cursorline = true
 set.nu = true
 set.rnu = true
     -- Changes current line highlight color.
---vim.cmd [[hi CursorLineNr guifg=#ffffff]]
+--vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ffffff" } )
     -- Highlight the 80th column for good coding visualization
 set.colorcolumn = '80'
 --vim.api.nvim_set_hl(0, "Colorcolumn", { bg = 23 } )

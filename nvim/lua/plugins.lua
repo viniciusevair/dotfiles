@@ -18,12 +18,15 @@ vim.opt.rtp:prepend(lazypath)
 
 -- {{{ Lazy Plugins Setup
 require("lazy").setup({
-    -- {{{ Colorschemes
+    -- Colorschemes
+    -- {{{ Melange
     {
         "savq/melange",
         lazy = false,
         priority = 1000,
     },
+    -- }}}
+    -- {{{ Seoul256
     { "junegunn/seoul256.vim", event = "VeryLazy" },
     -- }}}
 
@@ -344,41 +347,8 @@ require("lazy").setup({
     -- {{{ Lsp_Zero
     {
         "VonHeikemen/lsp-zero.nvim",
+        branch = 'dev-v3',
         lazy = true,
-        config = function()
-            local lsp = require("lsp-zero").preset({})
-
-            lsp.extend_cmp()
-            lsp.configure("lua_ls", {
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
-                        format = {
-                            enabled = false,
-                        },
-                    },
-                },
-            })
-
-            lsp.set_sign_icons({
-                error = "│",
-                warn = "│",
-                hint = "│",
-                info = "│",
-            })
-
-            lsp.on_attach(function(client, bufnr)
-                -- see :help lsp-zero-keybindings
-                -- to learn the available actions
-                lsp.default_keymaps({ buffer = bufnr })
-            end)
-
-            vim.diagnostic.config({
-                virtual_text = false,
-            })
-        end,
     },
     -- }}}
     -- {{{ Mason
@@ -400,12 +370,6 @@ require("lazy").setup({
     -- {{{ Mason_LSPConfig
     {
         "williamboman/mason-lspconfig.nvim",
-        config = function()
-            local lsp = require("lsp-zero").preset({})
-            require("mason-lspconfig").setup({
-                handlers = { lsp.default_setup },
-            })
-        end,
     },
     -- }}}
     -- {{{ Nvim_Lspconfig
@@ -418,128 +382,47 @@ require("lazy").setup({
     -- }}}
 
     -- Autocompletion
-    -- {{{ LuaSnip
-    {
-        "L3MON4D3/LuaSnip",
-        version = "1.*",
-        config = function()
-            local ls = require("luasnip")
-            ls.config.set_config({
-                history = true,
-            })
-
-            vim.keymap.set({ "i", "s" }, "<C-L>", function()
-                ls.jump(1)
-            end, { silent = true })
-            vim.keymap.set({ "i", "s" }, "<C-D>", function()
-                ls.jump(-1)
-            end, { silent = true })
-
-            local s = ls.snippet
-            local sn = ls.snippet_node
-            local isn = ls.indent_snippet_node
-            local t = ls.text_node
-            local i = ls.insert_node
-            local f = ls.function_node
-            local c = ls.choice_node
-            local d = ls.dynamic_node
-            local r = ls.restore_node
-            local events = require("luasnip.util.events")
-            local ai = require("luasnip.nodes.absolute_indexer")
-            local extras = require("luasnip.extras")
-            local l = extras.lambda
-            local rep = extras.rep
-            local p = extras.partial
-            local m = extras.match
-            local n = extras.nonempty
-            local dl = extras.dynamic_lambda
-            local fmt = require("luasnip.extras.fmt").fmt
-            local fmta = require("luasnip.extras.fmt").fmta
-            local conds = require("luasnip.extras.expand_conditions")
-            local postfix = require("luasnip.extras.postfix").postfix
-            local types = require("luasnip.util.types")
-            local parse = require("luasnip.util.parser").parse_snippet
-            local ms = ls.multi_snippet
-            local k = require("luasnip.nodes.key_indexer").new_key
-
-            ls.config.setup({ enable_autosnippets = true })
-            require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/after/snippets/" }
-        end,
-    },
-    -- }}}
     -- {{{ Nvim_CMP
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
-            { "L3MON4D3/LuaSnip" },
+            {
+                "L3MON4D3/LuaSnip",
+                config = function()
+                    local ls = require("luasnip")
+                    local s = ls.snippet
+                    local sn = ls.snippet_node
+                    local isn = ls.indent_snippet_node
+                    local t = ls.text_node
+                    local i = ls.insert_node
+                    local f = ls.function_node
+                    local c = ls.choice_node
+                    local d = ls.dynamic_node
+                    local r = ls.restore_node
+                    local events = require("luasnip.util.events")
+                    local ai = require("luasnip.nodes.absolute_indexer")
+                    local extras = require("luasnip.extras")
+                    local l = extras.lambda
+                    local rep = extras.rep
+                    local p = extras.partial
+                    local m = extras.match
+                    local n = extras.nonempty
+                    local dl = extras.dynamic_lambda
+                    local fmt = require("luasnip.extras.fmt").fmt
+                    local fmta = require("luasnip.extras.fmt").fmta
+                    local conds = require("luasnip.extras.expand_conditions")
+                    local postfix = require("luasnip.extras.postfix").postfix
+                    local types = require("luasnip.util.types")
+                    local parse = require("luasnip.util.parser").parse_snippet
+                    local ms = ls.multi_snippet
+                    local k = require("luasnip.nodes.key_indexer").new_key
+
+                    ls.config.setup({ enable_autosnippets = true })
+                    require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/after/snippets/" }
+                end,
+            },
             { "saadparwaiz1/cmp_luasnip" },
         },
-        config = function()
-            local cmp = require("cmp")
-            local lspkind = require("lspkind")
-            cmp.setup({
-                window = {
-                    completion = cmp.config.window.bordered({
-                        border = { "◈", "—", "◈", " ", "◈", "—", "◈", " " },
-                        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-                        col_offset = -3,
-                        side_padding = 0,
-                    }),
-
-                    documentation = cmp.config.window.bordered({
-                        border = { "◈", "—", "◈", " ", "◈", "—", "◈", " " },
-                    }),
-                },
-
-                sources = {
-                    { name = "nvim_lsp", keyword_length = 2 },
-                    { name = "luasnip", keyword_length = 2 },
-                    { name = "path", keyword_length = 2 },
-                    { name = "buffer", keyword_length = 6 },
-                    { name = "nvim_lua", keyword_length = 2 },
-                },
-
-                formatting = {
-                    fields = { "abbr", "kind", "menu" },
-                    format = lspkind.cmp_format({
-                        maxwidth = 20,
-                        ellipsis_char = "...",
-
-                        before = function(entry, vim_item)
-                            local final = "()"
-                            vim_item.abbr = vim_item.abbr:match("[^(]+")
-                            vim_item.abbr = vim_item.abbr:gsub("%s+", "")
-
-                            if vim_item.kind == "Function" or vim_item.kind == "Method" then
-                                vim_item.abbr = vim_item.abbr:gsub("%s+", "") .. final
-                            end
-                            vim_item.menu = ""
-                            return vim_item
-                        end,
-                        mode = "symbol_text",
-                        menu = {
-                            buffer = "[Buffer]",
-                            nvim_lsp = "[LSP]",
-                            luasnip = "[LuaSnip]",
-                            nvim_lua = "[Lua]",
-                            latex_symbols = "[LaTeX]",
-                        },
-                    }),
-                },
-
-                sorting = {
-                    comparators = {
-                        cmp.config.compare.exact,
-                        cmp.config.compare.locality,
-                    },
-                },
-
-                mapping = {
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-                },
-            })
-        end,
     },
     -- }}}
     -- {{{ LSPKind
@@ -593,5 +476,104 @@ require("lazy").setup({
         end,
     },
     -- }}}
+})
+-- }}}
+
+-- {{{ LSP Configuration
+local lsp = require('lsp-zero').preset({})
+local lspkind = require('lspkind')
+local cmp = require('cmp')
+
+lsp.extend_cmp()
+
+require('lspconfig').lua_ls.setup({
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+})
+
+lsp.set_sign_icons({
+    error = '│',
+    warn  = '│',
+    hint  = '│',
+    info  = '│'
+})
+
+cmp.setup({
+    window = {
+        completion = cmp.config.window.bordered({
+            border = { "◈", "—", "◈", " ", "◈", "—", "◈", " ", },
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            col_offset = -3,
+            side_padding = 0,
+        }),
+
+        documentation = cmp.config.window.bordered({
+            border = { "◈", "—", "◈", " ", "◈", "—", "◈", " ", },
+        })
+    },
+
+    sources = {
+        {name = "nvim_lsp", keyword_length = 2},
+        {name = "luasnip", keyword_length = 2},
+        {name = "path", keyword_length = 2},
+        {name = "buffer", keyword_length = 6},
+        {name = "nvim_lua", keyword_length = 2},
+    },
+
+    formatting = {
+        fields = { "abbr", "kind", "menu" },
+        format = lspkind.cmp_format({
+            maxwidth = 20,
+            ellipsis_char = '...',
+
+            before = function (entry, vim_item)
+                local final = "()"
+                vim_item.abbr = vim_item.abbr:match("[^(]+")
+                vim_item.abbr = vim_item.abbr:gsub("%s+","")
+
+                if vim_item.kind == "Function" or  vim_item.kind == "Method" then
+                    vim_item.abbr = vim_item.abbr:gsub("%s+","") .. final
+                end
+                vim_item.menu = ""
+                return vim_item
+            end,
+            mode = "symbol_text",
+            menu = ({
+                buffer = "[Buffer]",
+                nvim_lsp = "[LSP]",
+                luasnip = "[LuaSnip]",
+                nvim_lua = "[Lua]",
+                latex_symbols = "[LaTeX]",
+            })
+        }),
+    },
+
+    sorting = {
+        comparators = {
+            cmp.config.compare.exact,
+            cmp.config.compare.locality,
+        }
+    },
+
+    mapping = {
+        ['<CR>'] = cmp.mapping.confirm({select = true}),
+        ['<Tab>'] = cmp.mapping.confirm({select = true}),
+    }
+})
+
+lsp.on_attach(function(client, bufnr)
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    lsp.default_keymaps({buffer = bufnr})
+end)
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    handlers = {lsp.default_setup},
 })
 -- }}}
