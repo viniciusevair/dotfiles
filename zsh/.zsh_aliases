@@ -8,12 +8,13 @@ alias PegaClasse='xprop | grep WM_CLASS'
 alias ufpr="ssh ves22@ssh.c3sl.ufpr.br"
 
 # Courses aliases
-alias CI1001='vd ~/Documents/2022.2/CI1001_Programacao1/; ls'
-alias CI1002='vd ~/Documents/2023.1/CI1002/; ls'
-alias CI1056='vd ~/Documents/2022.2/CI1056_alg2/; ls'
-alias CI1057='vd ~/Documents/2023.1/CI1057/; ls'
-alias CI1210='vd ~/Documents/2022.2/CI1210_Projetos/; ls'
-alias CI1212='vd ~/Documents/2023.1/CI1212/; ls'
+alias CI1001='vd ~/Documents/2022.2/CI1001_Programacao1/'
+alias CI1210='vd ~/Documents/2022.2/CI1210_Projetos/'
+alias CI1056='vd ~/Documents/2022.2/CI1056_alg2/'
+alias CI1002='vd ~/Documents/2023.1/CI1002/'
+alias CI1057='vd ~/Documents/2023.1/CI1057/'
+alias CI1212='vd ~/Documents/2023.1/CI1212/'
+alias CI1064='vd ~/Documents/2023.2/CI1064/'
 
 # Navigation aliases
 alias ..='vd ..'
