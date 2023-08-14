@@ -2,13 +2,23 @@ take () {
     mkdir -p $1 && cd $1
 }
 
-jcomp () {
-    javac "$1"
-    java $(basename "$1" .java)
-}
-
-comp () {
-    gcc -Wall -g $1 -o $(basename "$1" .c)
+Run () {
+    if [[ $1 == *.c ]]; then
+        FILE_SRC=$(basename "$1" .c)
+        gcc -Wall -g "$FILE_SRC.c" -o "$FILE_SRC"
+        "./$FILE_SRC"
+    elif [[ $1 == *.s ]]; then
+        FILE_SRC=$(basename "$1" .s)
+        as -g "$FILE_SRC.s" -o "$FILE_SRC.o"
+        ld -g "$FILE_SRC.o" -o "$FILE_SRC"
+        "./$FILE_SRC"
+    elif [[ $1 == *.java ]]; then
+        FILE_SRC=$(basename "$1" .java)
+        javac "$FILE_SRC.java"
+        java "$FILE_SRC"
+    else
+        echo "Formato de arquivo não suportado."
+    fi
 }
 
 alias val='valgrind --leak-check=full --show-leak-kinds=all -s'
@@ -39,4 +49,8 @@ import_git () {
     CI1057
     git pull
     cd
+}
+
+nnotes () {
+    ll | awk 'NR>1' | cut -d':' -f2 | cut -d' ' -f2
 }
