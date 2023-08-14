@@ -9,22 +9,22 @@ vim.cmd [[let maplocalleader = '\']]
 vim.keymap.set("n", "<leader>e", vim.cmd.Vex)
 
 -- Plugin manager
-vim.keymap.set("n", "<C-l>", ":Lazy<CR>")
+vim.keymap.set("n", "<C-l>", ":Lazy<CR>", { silent = true })
 
 -- Buffers.
 -- Move between buffers.
-vim.keymap.set("n", "<A-1>", ":b1<CR>")
-vim.keymap.set("n", "<leader>j", ":bprev<CR>")
-vim.keymap.set("n", "<leader>k", ":bnext<CR>")
-vim.keymap.set("n", "<A-\'>", ":bprev<CR>")
-vim.keymap.set("n", "<A-2>", ":bnext<CR>")
+vim.keymap.set("n", "<A-1>", ":b1<CR>", { silent = true })
+vim.keymap.set("n", "<leader>j", ":bprev<CR>", { silent = true })
+vim.keymap.set("n", "<leader>k", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "<A-\'>", ":bprev<CR>", { silent = true })
+vim.keymap.set("n", "<A-2>", ":bnext<CR>", { silent = true })
 -- Delete current buffer.
-vim.keymap.set("n", "<leader>z", ":bd<CR>")
+vim.keymap.set("n", "<leader>z", ":bd<CR>", { silent = true })
 -- Write to current file.
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 -- Open this file.
-vim.keymap.set("n", "ø", ":e ~/.config/nvim/lua<CR>")
-vim.keymap.set("n", "þ", ":e ~/.config/nvim/after<CR>")
+vim.keymap.set("n", "ø", ":e ~/.config/nvim/lua<CR>", { silent = true })
+vim.keymap.set("n", "þ", ":e ~/.config/nvim/after<CR>", { silent = true })
 
 -- Move to line edges
 vim.keymap.set("i", "<A-l>", "<Esc>A")
@@ -42,12 +42,12 @@ vim.keymap.set("n", "<C-.>", "`>")
 vim.keymap.set("n", "<C-;>", "`^")
 
 -- Move to function start/end
-vim.keymap.set({"n", "v"}, "<A-k>", "?^[^ \\t#/-]<CR>")
-vim.keymap.set({"n", "v"}, "<A-j>", "/^[^ \\t#/-]<CR>")
+vim.keymap.set({"n", "v"}, "<A-k>", "?^[^ \\t#/-]<CR>", { silent = true })
+vim.keymap.set({"n", "v"}, "<A-j>", "/^[^ \\t#/-]<CR>", { silent = true })
 
 -- Move lines up and down when in visual mode (needs better shortcut).
-vim.keymap.set("v", "L", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "H", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "L", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "H", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Center the cursor after halfpage jumps.
 vim.keymap.set({"n", "v"}, "<C-d>", "<C-d>zz")
@@ -78,9 +78,9 @@ vim.keymap.set("n", "ð", "dt)")
 -- Cut text till underscore
 vim.keymap.set("n", "<leader>c", "ct_")
 -- Colorpicker shortcut
-vim.keymap.set("n", "<C-c>", ":CccPick<CR>")
-vim.keymap.set("i", "<C-c>", " <Esc>:CccPick<CR>")
--- <CR> tags helper
+vim.keymap.set("n", "<C-c>", ":CccPick<CR>", { silent = true })
+vim.keymap.set("i", "<C-c>", " <Esc>:CccPick<CR>", { silent = true })
+-- <CR> tags helper.
 vim.keymap.set("i", "<C-CR>", "<CR><Esc>O")
 
 -- Formatting.
@@ -103,6 +103,6 @@ vim.keymap.set({"n", "v"}, "j", [[v:count ? (v:count >=3 ? "m'" . v:count : "") 
 vim.keymap.set({"n", "v"}, "k", [[v:count ? (v:count >= 3 ? "m'" . v:count : "") . "k" : "k"]], { expr = true })
 
 -- Terminal inside nvim shortcut
-vim.keymap.set("n", "<C-t>", ":ToggleTerm<CR>")
-vim.keymap.set("t", "<C-t>", [[<C-\><C-n>:ToggleTerm<CR>]])
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+vim.keymap.set("n", "<C-t>", ":ToggleTerm<CR>", { silent = true })
+vim.keymap.set("t", "<C-t>", [[<C-\><C-n>:ToggleTerm<CR>]], { silent = true })
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
