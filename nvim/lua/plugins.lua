@@ -296,6 +296,15 @@ require("lazy").setup({
             local builtin = require("telescope.builtin")
             vim.keymap.set("n", "<leader>f", builtin.find_files, {})
             vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+            require("telescope").setup({
+                defaults = {
+                    borderchars = {
+                        preview = { "—", " ", "—", " ", "◈", "◈", "◈", "◈" },
+                        prompt = { "—", " ", "—", " ", "◈", "◈", "◈", "◈" },
+                        results = { "—", " ", "—", " ", "◈", "◈", "◈", "◈" },
+                    },
+                }
+            })
         end,
     },
     -- }}}
@@ -304,6 +313,8 @@ require("lazy").setup({
         "akinsho/toggleterm.nvim",
         version = "*",
         opts = {
+            start_in_insert = true,
+            persist_mode = false,
             direction = "float",
             float_opts = {
                 border = { "◈", "—", "◈", " ", "◈", "—", "◈", " " },
@@ -317,6 +328,36 @@ require("lazy").setup({
     {
         "lervag/vimtex",
         ft = "tex",
+    },
+    -- }}}
+
+    -- Org_mode
+    -- {{{ Neorg
+    {
+        "nvim-neorg/neorg",
+        build = ":Neorg sync-parsers",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        ft = "norg",
+        config = function()
+            require("neorg").setup {
+                load = {
+                    ["core.defaults"] = {}, -- Loads default behaviour
+                    ["core.concealer"] = {
+                        config = {
+                            icon_preset = "diamond",
+                        },
+                        ["core.dirman"] = {
+                            config = {
+                                workspaces = {
+                                    notes = "~/Study",
+                                },
+                            },
+                        },
+                    },
+                },
+            }
+            vim.opt.conceallevel = 3
+        end,
     },
     -- }}}
 
@@ -419,6 +460,8 @@ require("lazy").setup({
 
                     ls.config.setup({ enable_autosnippets = true })
                     require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/after/snippets/" }
+                    vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+                    vim.keymap.set({"i", "s"}, "<C-D>", function() ls.jump(-1) end, {silent = true})
                 end,
             },
             { "saadparwaiz1/cmp_luasnip" },

@@ -88,3 +88,5 @@ set.foldlevel = 999
 vim.cmd [[autocmd FileType html setlocal ts=2 sts=2 sw=2]]
     -- JS
 vim.cmd [[autocmd FileType javascript setlocal ts=2 sts=2 sw=2]]
+    -- Neorg
+vim.cmd [[autocmd FileType norg setlocal ts=2 sts=2 sw=2]]
