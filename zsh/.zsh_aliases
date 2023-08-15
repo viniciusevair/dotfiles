@@ -14,7 +14,12 @@ alias CI1056='vd ~/Documents/2022.2/CI1056_alg2/'
 alias CI1002='vd ~/Documents/2023.1/CI1002/'
 alias CI1057='vd ~/Documents/2023.1/CI1057/'
 alias CI1212='vd ~/Documents/2023.1/CI1212/'
+alias CI1059='vd ~/Documents/2023.2/CI1059/'
+alias CI1062='vd ~/Documents/2023.2/CI1062/'
 alias CI1064='vd ~/Documents/2023.2/CI1064/'
+alias CI1164='vd ~/Documents/2023.2/CI1164/'
+alias CI1165='vd ~/Documents/2023.2/CI1165/'
+alias CI1350='vd ~/Documents/2023.2/CI1350/'
 
 # Navigation aliases
 alias ..='vd ..'
@@ -23,7 +28,7 @@ alias ....='vd ../../..'
 alias .....='vd ../../../..'
 alias awedirectory='vd ~/.config/awesome/'
 alias vimdirectory='vd ~/.config/nvim/lua/'
-alias znth='vd ~/Study/zenith_sanctum/'
+alias zns='vd ~/zenithSanctum'
 
 # Git aliases
 alias gitps='git push'
@@ -37,9 +42,6 @@ alias gitres='git restore'
 alias nv='nvim'
 alias lgsim='java -jar ~/.logisim/logisim-evolution-3.8.0-all.jar'
 alias py3='python3.11'
-
-# Laziness aliases
-alias snippets='vd ~/.config/nvim/after/snippets/'
 
 # Configurations aliases
 alias .zshconfig='nvim ~/.config/zsh/.zshrc'
