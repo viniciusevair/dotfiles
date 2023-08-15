@@ -123,16 +123,16 @@ require("lazy").setup({
     -- {{{ Indent_Blankline
     {
         "lukas-reineke/indent-blankline.nvim",
-        opts = {
-            char = "│",
-            show_current_context = true,
-            show_end_of_line = false,
-            show_current_context_start = false,
-            show_trailing_blankline_indent = false,
-            use_treesitter = true,
-            --filetype_exclude = {},
-        },
         config = function()
+            require("indent_blankline").setup({
+                char = "│",
+                show_current_context = true,
+                show_end_of_line = false,
+                show_current_context_start = false,
+                show_trailing_blankline_indent = false,
+                use_treesitter = true,
+                --filetype_exclude = {},
+            })
             -- Indent Blankline highlight colors.
             vim.api.nvim_set_hl(0, "IndentBlankLineContextChar", { fg = "#ebc06d", bg = "none" })
             --vim.api.nvim_set_hl(0, "IndentBlankLineChar", {fg = "#666666", bg = "none"})
@@ -427,6 +427,7 @@ require("lazy").setup({
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
+            -- {{{ LuaSnip
             {
                 "L3MON4D3/LuaSnip",
                 config = function()
@@ -464,7 +465,12 @@ require("lazy").setup({
                     vim.keymap.set({"i", "s"}, "<C-D>", function() ls.jump(-1) end, {silent = true})
                 end,
             },
+            -- }}}
             { "saadparwaiz1/cmp_luasnip" },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'hrsh7th/cmp-cmdline' },
         },
     },
     -- }}}
@@ -561,9 +567,9 @@ cmp.setup({
     },
 
     sources = {
+        {name = "path", keyword_length = 2},
         {name = "nvim_lsp", keyword_length = 2},
         {name = "luasnip", keyword_length = 2},
-        {name = "path", keyword_length = 2},
         {name = "buffer", keyword_length = 6},
         {name = "nvim_lua", keyword_length = 2},
     },
@@ -594,13 +600,6 @@ cmp.setup({
                 latex_symbols = "[LaTeX]",
             })
         }),
-    },
-
-    sorting = {
-        comparators = {
-            cmp.config.compare.exact,
-            cmp.config.compare.locality,
-        }
     },
 
     mapping = {
