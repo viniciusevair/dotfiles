@@ -264,7 +264,7 @@ require("lazy").setup({
     -- {{{ CCC (Colorpicker)
     {
         "uga-rosa/ccc.nvim",
-
+        event = "VeryLazy",
         opts = {
             highlighter = {
                 auto_enable = false,
@@ -570,8 +570,8 @@ cmp.setup({
         {name = "path", keyword_length = 2},
         {name = "nvim_lsp", keyword_length = 2},
         {name = "luasnip", keyword_length = 2},
-        {name = "buffer", keyword_length = 6},
         {name = "nvim_lua", keyword_length = 2},
+        {name = "buffer", keyword_length = 3},
     },
 
     formatting = {
@@ -606,6 +606,34 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({select = true}),
         ['<Tab>'] = cmp.mapping.confirm({select = true}),
     }
+})
+
+cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    }
+})
+
+cmp.setup.cmdline('?', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    }
+})
+
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        {
+            name = 'cmdline',
+            option = {
+                ignore_cmds = { 'Man', '!' }
+            }
+        }
+    })
 })
 
 lsp.on_attach(function(client, bufnr)
