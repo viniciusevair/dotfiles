@@ -82,6 +82,8 @@ vim.keymap.set("n", "<C-c>", ":CccPick<CR>", { silent = true })
 vim.keymap.set("i", "<C-c>", " <Esc>:CccPick<CR>", { silent = true })
 -- <CR> tags helper.
 vim.keymap.set("i", "<C-CR>", "<CR><Esc>O")
+-- More sane delete word shortcut
+vim.keymap.set("n", "dw", "daw")
 
 -- Formatting.
 -- Fix indentation inside a function.
