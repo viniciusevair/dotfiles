@@ -646,4 +646,8 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
     handlers = {lsp.default_setup},
 })
+
+vim.diagnostic.config({
+    virtual_text = false,
+})
 -- }}}
