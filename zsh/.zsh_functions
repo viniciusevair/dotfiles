@@ -5,7 +5,7 @@ take () {
 Run () {
     if [[ $1 == *.c ]]; then
         FILE_SRC=$(basename "$1" .c)
-        gcc -Wall -g "$FILE_SRC.c" -o "$FILE_SRC"
+        gcc -Wall -g "$FILE_SRC.c" -o "$FILE_SRC" -lm
         "./$FILE_SRC"
     elif [[ $1 == *.s ]]; then
         FILE_SRC=$(basename "$1" .s)

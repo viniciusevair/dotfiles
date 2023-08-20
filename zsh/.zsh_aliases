@@ -35,6 +35,7 @@ alias gitps='git push'
 alias gitPl='git pull'
 alias gita='git add'
 alias gitc='git commit -m'
+alias gitC='git commit -a -m'
 alias gits='git status'
 alias gitres='git restore'
 
