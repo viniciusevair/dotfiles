@@ -35,25 +35,6 @@ return {
     }),
 
     s({
-        trig = "while",
-        dscr = "While function with single argument",
-    },
-    {
-        t("while("), i(1, "condition"), t(")"),
-        t({ "", "\t" }), i(0),
-    }),
-
-    s({
-        trig = "mwhile",
-        dscr = "While function with multiple arguments",
-    },
-    {
-        t("while("), i(1, "condition"), t(") {"),
-        t({ "", "\t" }), i(0),
-        t({ "", "}" })
-    }),
-
-    s({
         trig = "mlc",
         dscr = "Allocate a memory dinamically",
     },
