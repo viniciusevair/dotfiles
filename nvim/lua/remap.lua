@@ -47,12 +47,12 @@ vim.keymap.set({"n", "v"}, "<A-k>", "?^[^ \\t#/-]<CR>", { silent = true })
 vim.keymap.set({"n", "v"}, "<A-j>", "/^[^ \\t#/-]<CR>", { silent = true })
 
 -- Move lines up and down when in visual mode (needs better shortcut).
-vim.keymap.set("v", "L", ":m '>+1<CR>gv=gv", { silent = true })
-vim.keymap.set("v", "H", ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set("x", "L", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("x", "H", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Center the cursor after halfpage jumps.
-vim.keymap.set({"n", "v"}, "<C-d>", "<C-d>zz")
-vim.keymap.set({"n", "v"}, "<C-u>", "<C-u>zz")
+vim.keymap.set({"n", "x"}, "<C-d>", "<C-d>zz")
+vim.keymap.set({"n", "x"}, "<C-u>", "<C-u>zz")
 
 -- Register management.
 -- Substitute text without writing deleted text to the register.
@@ -103,8 +103,8 @@ vim.keymap.set("n", "zm", "zM")
 vim.keymap.set("n", "zM", "zm")
 
 -- Make J and K part of jumplist
-vim.keymap.set({"n", "v"}, "j", [[v:count ? (v:count >=3 ? "m'" . v:count : "") . "j" : "j"]], { expr = true })
-vim.keymap.set({"n", "v"}, "k", [[v:count ? (v:count >= 3 ? "m'" . v:count : "") . "k" : "k"]], { expr = true })
+vim.keymap.set({"n", "x"}, "j", [[v:count ? (v:count >=3 ? "m'" . v:count : "") . "j" : "j"]], { expr = true })
+vim.keymap.set({"n", "x"}, "k", [[v:count ? (v:count >= 3 ? "m'" . v:count : "") . "k" : "k"]], { expr = true })
 
 -- Terminal inside nvim shortcut
 vim.keymap.set("n", "<C-t>", "<Cmd>ToggleTerm<CR>", { silent = true })
