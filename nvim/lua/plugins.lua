@@ -131,7 +131,7 @@ require("lazy").setup({
                 show_current_context_start = false,
                 show_trailing_blankline_indent = false,
                 use_treesitter = true,
-                --filetype_exclude = {},
+                filetype_exclude = { "norg", "txt" },
             })
             -- Indent Blankline highlight colors.
             vim.api.nvim_set_hl(0, "IndentBlankLineContextChar", { fg = "#ebc06d", bg = "none" })
