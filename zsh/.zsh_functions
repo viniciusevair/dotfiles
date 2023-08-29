@@ -42,7 +42,7 @@ startGit () {
 }
 
 import_git () {
-    cd ~/.config
+    vd ~/.config
     git pull
     CI1059
     git pull
@@ -53,8 +53,6 @@ import_git () {
     CI1164
     git pull
     CI1165
-    git pull
-    CI1350
     git pull
     cd
 }
