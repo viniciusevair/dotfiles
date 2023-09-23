@@ -8,18 +8,18 @@ alias PegaClasse='xprop | grep WM_CLASS'
 alias ufpr="ssh ves22@ssh.c3sl.ufpr.br"
 
 # Courses aliases
-alias CI1001='vd ~/Documents/2022.2/CI1001_Programacao1/'
-alias CI1210='vd ~/Documents/2022.2/CI1210_Projetos/'
-alias CI1056='vd ~/Documents/2022.2/CI1056_alg2/'
-alias CI1002='vd ~/Documents/2023.1/CI1002/'
-alias CI1057='vd ~/Documents/2023.1/CI1057/'
-alias CI1212='vd ~/Documents/2023.1/CI1212/'
-alias CI1059='vd ~/Documents/2023.2/CI1059/'
-alias CI1062='vd ~/Documents/2023.2/CI1062/'
-alias CI1064='vd ~/Documents/2023.2/CI1064/'
-alias CI1164='vd ~/Documents/2023.2/CI1164/'
-alias CI1165='vd ~/Documents/2023.2/CI1165/'
-alias CI1350='vd ~/Documents/2023.2/CI1350/'
+alias ci1001='vd ~/Documents/2022.2/CI1001_Programacao1/'
+alias ci1210='vd ~/Documents/2022.2/CI1210_Projetos/'
+alias ci1056='vd ~/Documents/2022.2/CI1056_alg2/'
+alias ci1002='vd ~/Documents/2023.1/CI1002/'
+alias ci1057='vd ~/Documents/2023.1/CI1057/'
+alias ci1212='vd ~/Documents/2023.1/CI1212/'
+alias ci1059='vd ~/Documents/2023.2/CI1059/'
+alias ci1062='vd ~/Documents/2023.2/CI1062/'
+alias ci1064='vd ~/Documents/2023.2/CI1064/'
+alias ci1164='vd ~/Documents/2023.2/CI1164/'
+alias ci1165='vd ~/Documents/2023.2/CI1165/'
+alias ci1350='vd ~/Documents/2023.2/CI1350/'
 
 # Navigation aliases
 alias ..='vd ..'
@@ -28,7 +28,6 @@ alias ....='vd ../../..'
 alias .....='vd ../../../..'
 alias awedirectory='vd ~/.config/awesome/'
 alias vimdirectory='vd ~/.config/nvim/lua/'
-alias zns='vd ~/zenithSanctum'
 
 # Git aliases
 alias gitps='git push'
@@ -55,3 +54,7 @@ alias vimconfig='nvim ~/.config/nvim/lua/'
 alias aweconfig='nvim ~/.config/awesome/rc.lua'
 alias kitconfig='nvim ~/.config/kitty/kitty.conf'
 alias picconfig='nvim ~/.config/picom/picom.conf'
+
+# Keyboard stuff
+alias KbdOff='xinput set-prop "AT Translated Set 2 keyboard" "Device Enabled" 0'
+alias KbdOn='xinput set-prop "AT Translated Set 2 keyboard" "Device Enabled" 1'
