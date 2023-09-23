@@ -16,6 +16,8 @@ Run () {
         FILE_SRC=$(basename "$1" .java)
         javac "$FILE_SRC.java"
         java "$FILE_SRC"
+    elif [[ $1 == *.py ]]; then
+        py3 "$1"
     else
         echo "Formato de arquivo não suportado."
     fi
