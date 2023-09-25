@@ -442,17 +442,23 @@ end,
 {description = "lua execute prompt", group = "awesome"}),
 
 -- Menubar
-awful.key({ modkey }, "p", function() menubar.show() end,
+awful.key({ modkey, "Control" }, "p", function() menubar.show() end,
 {description = "show the menubar", group = "launcher"}),
 
 
 -- Sound
 awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("playerctl play-pause") end),
+awful.key({ modkey }, "p", function () awful.util.spawn("playerctl play-pause") end),
 awful.key({ }, "XF86AudioNext", function () awful.util.spawn("playerctl next") end),
+awful.key({ modkey, "Shift" }, "n", function () awful.util.spawn("playerctl next") end),
 awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("playerctl previous") end),
-awful.key({ }, "XF86AudioRaiseVolume", function() awful.util.spawn("wpctl set-volume -l 1.3 @DEFAULT_AUDIO_SINK@ 5%+") end),
+awful.key({ modkey, "Shift" }, "p", function () awful.util.spawn("playerctl previous") end),
+awful.key({ }, "XF86AudioRaiseVolume", function() awful.util.spawn("wpctl set-volume -l 1.2 @DEFAULT_AUDIO_SINK@ 5%+") end),
+awful.key({ modkey }, "[", function() awful.util.spawn("wpctl set-volume -l 1.2 @DEFAULT_AUDIO_SINK@ 5%+") end),
 awful.key({ }, "XF86AudioLowerVolume", function() awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") end),
-awful.key({ }, "XF86AudioMute", function() awful.util.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") end)
+awful.key({ modkey }, "]", function() awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") end),
+awful.key({ }, "XF86AudioMute", function() awful.util.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") end),
+awful.key({ modkey }, "/", function() awful.util.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") end)
 )
 
 clientkeys = gears.table.join(
