@@ -59,6 +59,10 @@ import_git () {
     cd
 }
 
+FixKBD() {
+    xmodmap ~/.config/Xmodmap
+}
+
 zns() {
     if [[ $# -eq 1 ]]; then
         vd ~/zenithSanctum/$1
