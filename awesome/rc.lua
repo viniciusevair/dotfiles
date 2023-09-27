@@ -340,19 +340,13 @@ awful.key({ modkey }, "Escape", awful.tag.history.restore,
 {description = "go back", group = "tag"}), --????
 
 -- Screenshot
-awful.key({}, "Print",
-function() awful.spawn("flameshot full -p /home/zau/Pictures/Screenshots/") end, 
+awful.key({ "Control", "Shift", modkey }, "s",
+function() awful.spawn("flameshot full -p /home/zaurak/Pictures/Screenshots/") end, 
 {description = "Fullshot to File", group = "Screenshots"}),
-awful.key({"Shift", modkey}, "Print",
-function() awful.spawn("flameshot gui -p /home/zau/Pictures/Screenshots/") end,
+awful.key({ "Control", modkey }, "s",
+function() awful.spawn("flameshot gui -p /home/zaurak/Pictures/Screenshots/") end,
 {description = "Screenshot Select to File", group = "Screenshots"}),
-awful.key({"Control"}, "Print",
-function() awful.spawn("flameshot full -c") end,
-{description = "Fullshot Select to Clipboard", group = "Screenshots"}),
-awful.key({"Control", modkey}, "Print",
-function() awful.spawn("flameshot full -d 2000 -p Pictures/") end,
-{description = "Fullshot with 2s Delay", group = "Screenshots"}),
-awful.key({"Shift"}, "Print",
+awful.key({ "Shift", modkey }, "s",
 function() awful.spawn("flameshot gui -c") end,
 {description = "Screenshot Select to Clipboard", group = "Screenshots"}),
 
@@ -448,17 +442,23 @@ end,
 {description = "lua execute prompt", group = "awesome"}),
 
 -- Menubar
-awful.key({ modkey }, "p", function() menubar.show() end,
+awful.key({ modkey, "Control" }, "p", function() menubar.show() end,
 {description = "show the menubar", group = "launcher"}),
 
 
 -- Sound
 awful.key({ }, "XF86AudioPlay", function () awful.util.spawn("playerctl play-pause") end),
+awful.key({ modkey }, "p", function () awful.util.spawn("playerctl play-pause") end),
 awful.key({ }, "XF86AudioNext", function () awful.util.spawn("playerctl next") end),
+awful.key({ modkey, "Shift" }, "n", function () awful.util.spawn("playerctl next") end),
 awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("playerctl previous") end),
-awful.key({ }, "XF86AudioRaiseVolume", function() awful.util.spawn("wpctl set-volume -l 1.3 @DEFAULT_AUDIO_SINK@ 5%+") end),
+awful.key({ modkey, "Shift" }, "p", function () awful.util.spawn("playerctl previous") end),
+awful.key({ }, "XF86AudioRaiseVolume", function() awful.util.spawn("wpctl set-volume -l 1.2 @DEFAULT_AUDIO_SINK@ 5%+") end),
+awful.key({ modkey }, "[", function() awful.util.spawn("wpctl set-volume -l 1.2 @DEFAULT_AUDIO_SINK@ 5%+") end),
 awful.key({ }, "XF86AudioLowerVolume", function() awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") end),
-awful.key({ }, "XF86AudioMute", function() awful.util.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") end)
+awful.key({ modkey }, "]", function() awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") end),
+awful.key({ }, "XF86AudioMute", function() awful.util.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") end),
+awful.key({ modkey }, "/", function() awful.util.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") end)
 )
 
 clientkeys = gears.table.join(
@@ -469,6 +469,8 @@ function (c)
 end,
 {description = "toggle fullscreen", group = "client"}),
 awful.key({ modkey }, "q",      function (c) c:kill()                         end,
+{description = "close", group = "client"}),
+awful.key({ modkey, "Control" }, "q",      function (c) c:kill()                         end,
 {description = "close", group = "client"}),
 awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
 {description = "toggle floating", group = "client"}),

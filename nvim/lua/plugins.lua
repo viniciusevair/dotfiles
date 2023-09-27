@@ -328,6 +328,24 @@ require("lazy").setup({
     {
         "lervag/vimtex",
         ft = "tex",
+        config = function()
+            vim.g.vimtex_view_method = 'zathura'
+            vim.g.vimtex_quickfix_ignore_filters = {
+                "Command terminated with space",
+                "LaTeX Font Warning: Font shape",
+                "Package caption Warning: The option",
+                [[Underfull \\hbox (badness [0-9]*) in]],
+                "Package enumitem Warning: Negative labelwidth",
+                [[Overfull \\hbox ([0-9]*.[0-9]*pt too wide) in]],
+                [[Package caption Warning: Unused \\captionsetup]],
+                "Package typearea Warning: Bad type area settings!",
+                [[Package fancyhdr Warning: \\headheight is too small]],
+                [[Underfull \\hbox (badness [0-9]*) in paragraph at lines]],
+                "Package hyperref Warning: Token not allowed in a PDF string",
+                [[Overfull \\hbox ([0-9]*.[0-9]*pt too wide) in paragraph at lines]],
+            }
+            vim.g.vimtex_quickfix_mode=0
+        end,
     },
     -- }}}
 
@@ -477,39 +495,6 @@ require("lazy").setup({
     -- {{{ LSPKind
     {
         "onsails/lspkind.nvim",
-    },
-    -- }}}
-    -- {{{ Null_LS
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-            local null_ls = require("null-ls")
-
-            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-            null_ls.setup({
-                sources = {
-                    --null_ls.builtins.formatting.stylua,
-                    null_ls.builtins.diagnostics.mypy,
-                    null_ls.builtins.diagnostics.ruff,
-                    null_ls.builtins.formatting.black,
-                },
-                -- you can reuse a shared lspconfig on_attach callback here
-                on_attach = function(client, bufnr)
-                    if client.supports_method("textDocument/formatting") then
-                        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-                        vim.api.nvim_create_autocmd("BufWritePre", {
-                            group = augroup,
-                            buffer = bufnr,
-                            callback = function()
-                                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                                -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
-                                vim.lsp.buf.format({ async = false })
-                            end,
-                        })
-                    end
-                end,
-            })
-        end,
     },
     -- }}}
     -- {{{ Vim_Prettier

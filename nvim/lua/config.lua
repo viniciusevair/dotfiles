@@ -43,7 +43,7 @@ set.scrolloff = 5
     -- Sets nu+rnu, also moves signcolumn to the right of them.
 vim.opt.statuscolumn = "%=%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum) : ''}%=%s"
     -- Makes signcolumn always visible, also sets them to only one column
-vim.cmd [[set signcolumn=yes:1]]
+vim.opt.signcolumn = "yes:1"
 
 --
 -- Formating settings

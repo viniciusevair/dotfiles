@@ -40,11 +40,16 @@ vim.keymap.set({"n", "v"}, "<A-E>", "gE")
 -- Move to start/end of last visual selection
 vim.keymap.set("n", "<C-,>", "`<")
 vim.keymap.set("n", "<C-.>", "`>")
+vim.keymap.set("v", "<C-,>", "<Esc>`<")
+vim.keymap.set("v", "<C-.>", "<Esc>`>")
 vim.keymap.set("n", "<C-;>", "`^")
 
 -- Move to function start/end
 vim.keymap.set({"n", "v"}, "<A-k>", "?^[^ \\t#/-]<CR>", { silent = true })
 vim.keymap.set({"n", "v"}, "<A-j>", "/^[^ \\t#/-]<CR>", { silent = true })
+
+-- Move to the corresponding bracket
+vim.keymap.set({"n", "v"}, "<A-m>", "%")
 
 -- Move lines up and down when in visual mode (needs better shortcut).
 vim.keymap.set("x", "L", ":m '>+1<CR>gv=gv", { silent = true })
@@ -96,6 +101,7 @@ vim.keymap.set("n", "æ", "mzEBhx`zh")
 
 -- Yank to normal register
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({"n", "v"}, "<leader>ya", "<CMD>%y+<CR>")
 
 -- Folding remaps
 vim.keymap.set("n", "zr", "zR")

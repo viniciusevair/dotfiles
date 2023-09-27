@@ -16,6 +16,8 @@ Run () {
         FILE_SRC=$(basename "$1" .java)
         javac "$FILE_SRC.java"
         java "$FILE_SRC"
+    elif [[ $1 == *.py ]]; then
+        py3 "$1"
     else
         echo "Formato de arquivo não suportado."
     fi
@@ -57,6 +59,20 @@ import_git () {
     cd
 }
 
-nnotes () {
-    ll | awk 'NR>1' | cut -d':' -f2 | cut -d' ' -f2
+FixKBD() {
+    xmodmap ~/.config/Xmodmap
+}
+
+ResetHS() {
+    echo -e "disconnect 60:F4:3A:A2:2C:44" | bluetoothctl
+    sleep 5
+    echo -e "connect 60:F4:3A:A2:2C:44" | bluetoothctl
+}
+
+zns() {
+    if [[ $# -eq 1 ]]; then
+        vd ~/zenithSanctum/$1
+    else
+        vd ~/zenithSanctum/
+    fi
 }
