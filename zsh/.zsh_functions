@@ -63,25 +63,16 @@ FixKBD() {
     xmodmap ~/.config/Xmodmap
 }
 
+ResetHS() {
+    echo -e "disconnect 60:F4:3A:A2:2C:44" | bluetoothctl
+    sleep 5
+    echo -e "connect 60:F4:3A:A2:2C:44" | bluetoothctl
+}
+
 zns() {
     if [[ $# -eq 1 ]]; then
         vd ~/zenithSanctum/$1
     else
         vd ~/zenithSanctum/
-    fi
-}
-
-nnotes() {
-    ll | awk 'NR>1' | cut -d':' -f2 | cut -d' ' -f2
-}
-
-NN() {
-    last_monday=$(($(date +%d) - $(date +%u) + 1))
-    current_month=$(date +%m)
-    current_year=$(date +%a)
-    if [[ $current_month -eq 02 ]]; then
-    fi
-    if [[ $start_of_week -le 23 ]]; then
-        nv $start_of_week$current_month\_$(($start_of_week + 6))$current_month.norg
     fi
 }
