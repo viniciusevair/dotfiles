@@ -59,17 +59,17 @@ import_git () {
     cd
 }
 
-FixKBD() {
+FixKBD () {
     xmodmap ~/.config/Xmodmap
 }
 
-ResetHS() {
+ResetHS () {
     echo -e "disconnect 60:F4:3A:A2:2C:44" | bluetoothctl
     sleep 5
     echo -e "connect 60:F4:3A:A2:2C:44" | bluetoothctl
 }
 
-zns() {
+zns () {
     if [[ $# -eq 1 ]]; then
         vd ~/zenithSanctum/$1
     else
