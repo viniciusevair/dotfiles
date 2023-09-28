@@ -124,17 +124,20 @@ require("lazy").setup({
     {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
-            require("indent_blankline").setup({
-                char = "│",
-                show_current_context = true,
-                show_end_of_line = false,
-                show_current_context_start = false,
-                show_trailing_blankline_indent = false,
-                use_treesitter = true,
-                filetype_exclude = { "norg", "txt" },
+            require("ibl").setup({
+                indent = {
+                    char = "│",
+                },
+
+                scope = {
+                    show_start = false,
+                    highlight = { "Function", "Label" },
+                    exclude = { filetypes = { "txt" } },
+                    remove_blankline_trail = false,
+                },
             })
             -- Indent Blankline highlight colors.
-            vim.api.nvim_set_hl(0, "IndentBlankLineContextChar", { fg = "#ebc06d", bg = "none" })
+            --vim.api.nvim_set_hl(0, "IndentBlankLineContextChar", { fg = "#ebc06d", bg = "none" })
             --vim.api.nvim_set_hl(0, "IndentBlankLineChar", {fg = "#666666", bg = "none"})
         end,
     },
@@ -345,36 +348,6 @@ require("lazy").setup({
                 [[Overfull \\hbox ([0-9]*.[0-9]*pt too wide) in paragraph at lines]],
             }
             vim.g.vimtex_quickfix_mode=0
-        end,
-    },
-    -- }}}
-
-    -- Org_mode
-    -- {{{ Neorg
-    {
-        "nvim-neorg/neorg",
-        build = ":Neorg sync-parsers",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        ft = "norg",
-        config = function()
-            require("neorg").setup {
-                load = {
-                    ["core.defaults"] = {}, -- Loads default behaviour
-                    ["core.concealer"] = {
-                        config = {
-                            icon_preset = "diamond",
-                        },
-                        ["core.dirman"] = {
-                            config = {
-                                workspaces = {
-                                    notes = "~/Study",
-                                },
-                            },
-                        },
-                    },
-                },
-            }
-            vim.opt.conceallevel = 3
         end,
     },
     -- }}}
