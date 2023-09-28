@@ -88,6 +88,7 @@ vim.keymap.set("n", "<C-c>", "<Cmd>CccPick<CR>", { silent = true })
 vim.keymap.set("i", "<C-c>", "<Esc>l<Cmd>CccPick<CR>", { silent = true })
 -- <CR> tags helper.
 vim.keymap.set("i", "<C-CR>", "<CR><Esc>O")
+vim.keymap.set("n", "<C-CR>", "i<CR><Esc>O")
 -- More sane cut/delete word shortcut
 vim.keymap.set("n", "cw", "ciw")
 vim.keymap.set("n", "dw", "daw")

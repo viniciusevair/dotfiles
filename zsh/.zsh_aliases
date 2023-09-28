@@ -3,6 +3,8 @@ alias :q='exit'
 alias :w='source ~/.zshrc'
 alias nautilus='nautilus -w'
 alias PegaClasse='xprop | grep WM_CLASS'
+alias DirFileCount='du -a | cut -d/ -f2 | sort | uniq -c | sort -nr'
+alias DirFileSize='du -shc * | sort -nr'
 
 # Uni ssh shortcut
 alias ufpr="ssh ves22@ssh.c3sl.ufpr.br"
@@ -39,6 +41,7 @@ alias gitB='git branch'
 alias gitc='git commit -m'
 alias gits='git status'
 alias gitres='git restore'
+alias gitl='git log'
 
 # Apps shortcuts
 alias nv='nvim'
