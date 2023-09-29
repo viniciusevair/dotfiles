@@ -125,20 +125,19 @@ require("lazy").setup({
         "lukas-reineke/indent-blankline.nvim",
         config = function()
             require("ibl").setup({
-                indent = {
-                    char = "│",
-                },
+                --indent = {
+                --    char = "│",
+                --},
 
                 scope = {
                     show_start = false,
+                    show_end = false,
                     highlight = { "Function", "Label" },
-                    exclude = { filetypes = { "txt" } },
                     remove_blankline_trail = false,
                 },
+
+                exclude = { filetypes = { "txt" } },
             })
-            -- Indent Blankline highlight colors.
-            --vim.api.nvim_set_hl(0, "IndentBlankLineContextChar", { fg = "#ebc06d", bg = "none" })
-            --vim.api.nvim_set_hl(0, "IndentBlankLineChar", {fg = "#666666", bg = "none"})
         end,
     },
     -- }}}
