@@ -82,11 +82,12 @@ set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldlevel = 999
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 --
 -- Filetype specifics
     -- HTML
 vim.cmd [[autocmd FileType html setlocal ts=2 sts=2 sw=2]]
     -- JS
 vim.cmd [[autocmd FileType javascript setlocal ts=2 sts=2 sw=2]]
-    -- Neorg
-vim.cmd [[autocmd FileType norg setlocal ts=2 sts=2 sw=2]]

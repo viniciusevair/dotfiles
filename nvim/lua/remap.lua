@@ -6,7 +6,7 @@ vim.g.mapleader = " "
 vim.cmd [[let maplocalleader = '\']]
 
 -- Explorer.
-vim.keymap.set("n", "<leader>e", vim.cmd.Vex)
+vim.keymap.set("n", "<leader>e", "<Cmd>NvimTreeToggle<CR>")
 
 -- Plugin manager
 vim.keymap.set("n", "<C-l>", "<Cmd>Lazy<CR>", { silent = true })
