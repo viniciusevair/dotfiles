@@ -61,3 +61,4 @@ alias picconfig='nvim ~/.config/picom/picom.conf'
 # Keyboard stuff
 alias KbdOff='xinput set-prop "AT Translated Set 2 keyboard" "Device Enabled" 0'
 alias KbdOn='xinput set-prop "AT Translated Set 2 keyboard" "Device Enabled" 1'
+alias FixKBD='xmodmap ~/.config/Xmodmap'

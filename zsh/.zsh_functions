@@ -59,8 +59,9 @@ import_git () {
     cd
 }
 
-FixKBD () {
-    xmodmap ~/.config/Xmodmap
+KBDstartup () {
+    KbdOff
+    FixKBD
 }
 
 ResetHS () {
