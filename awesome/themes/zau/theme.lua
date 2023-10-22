@@ -7,7 +7,7 @@ theme.wallpaper = "/home/zaurak/.config/awesome/themes/zau/greenCastle.png"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "Iosevka SS12 11"
+theme.font      = "IosevkaTermNF, semibold 11"
 
 -- {{{ Colors
 theme.fg_normal  = "#DCDCCC"

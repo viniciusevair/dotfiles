@@ -270,7 +270,7 @@ awful.screen.connect_for_each_screen(function(s)
         thickness = 2
     }), 6, 6)
     s.spotify = wibox.container.margin(spotify_widget({
-        font = 'Iosevka SS12 9',
+        font = 'Iosevka',
         play_icon = '/usr/share/icons/Arc/actions/24/player_pause.png',
         pause_icon = '/usr/share/icons/Arc/actions/24/player_play.png',
         dim_when_paused = true,
@@ -287,7 +287,7 @@ awful.screen.connect_for_each_screen(function(s)
         screen = s,
         border_width = 2,
         border_color = beautiful.border_normal,
-        width = 1350,
+        width = 1904,
         height = 20,
         shape = function(cr, width, height)
             gears.shape.hexagon(cr, width, height)
@@ -458,7 +458,7 @@ awful.key({ modkey }, "[", function() awful.util.spawn("wpctl set-volume -l 1.2 
 awful.key({ }, "XF86AudioLowerVolume", function() awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") end),
 awful.key({ modkey }, "]", function() awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") end),
 awful.key({ }, "XF86AudioMute", function() awful.util.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") end),
-awful.key({ modkey }, "/", function() awful.util.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") end)
+awful.key({ modkey, "Shift" }, "m", function() awful.util.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") end)
 )
 
 clientkeys = gears.table.join(
