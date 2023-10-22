@@ -7,8 +7,8 @@ vim.cmd [[let maplocalleader = '\']]
 
 -- Explorer.
 vim.keymap.set("n", "<leader>e", "<Cmd>NvimTreeToggle $PWD<CR>")
-vim.keymap.set("n", "<leader>fe", "<Cmd>NvimTreeFindFile<CR>")
-vim.keymap.set("n", "<leader>fhe", "<Cmd>NvimTreeToggle ~/.<CR>")
+vim.keymap.set("n", "<leader>feb", "<Cmd>NvimTreeFindFile<CR>")
+vim.keymap.set("n", "<leader>feh", "<Cmd>NvimTreeToggle ~/.<CR>")
 
 -- Plugin manager
 vim.keymap.set("n", "<C-l>", "<Cmd>Lazy<CR>", { silent = true })
