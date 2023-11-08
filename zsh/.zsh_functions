@@ -52,15 +52,15 @@ startGit () {
 import_git () {
     vd ~/.config
     git pull
-    CI1059
+    ci1059
     git pull
-    CI1062
+    ci1062
     git pull
-    CI1064
+    ci1064
     git pull
-    CI1164
+    ci1164
     git pull
-    CI1165
+    ci1165
     git pull
     cd
 }
