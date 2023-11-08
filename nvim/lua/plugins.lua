@@ -487,6 +487,7 @@ require("lazy").setup({
             -- {{{ LuaSnip
             {
                 "L3MON4D3/LuaSnip",
+                dependencies = { "rafamadriz/friendly-snippets" },
                 config = function()
                     local ls = require("luasnip")
                     local s = ls.snippet
@@ -518,6 +519,7 @@ require("lazy").setup({
 
                     ls.config.setup({ enable_autosnippets = true })
                     require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/after/snippets/" }
+                    --require("luasnip.loaders.from_vscode").lazy_load()
                     vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
                     vim.keymap.set({"i", "s"}, "<C-D>", function() ls.jump(-1) end, {silent = true})
                 end,
@@ -549,6 +551,10 @@ require("lazy").setup({
         end,
     },
     -- }}}
+}, {
+    ui = {
+        border = diamondBorder,
+    },
 })
 -- }}}
 

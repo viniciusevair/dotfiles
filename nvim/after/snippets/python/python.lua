@@ -6,4 +6,11 @@ return {
     {
         t({"#!/usr/bin/env python3.11", "", ""}), i(0),
     }),
+    s({
+        trig = "pri",
+        dscr = "Print function",
+    },
+    {
+        t("print(f\""), i(1), t("\")"),
+    }),
 }
