@@ -9,6 +9,9 @@ alias DirFileSize='du -shc * | sort -nr'
 # Uni ssh shortcut
 alias ufpr="ssh ves22@ssh.c3sl.ufpr.br"
 
+# Scripts
+alias ClockFix="sudo ClockFix"
+
 # Courses aliases
 alias ci1001='vd ~/Documents/2022.2/CI1001_Programacao1/'
 alias ci1210='vd ~/Documents/2022.2/CI1210_Projetos/'
