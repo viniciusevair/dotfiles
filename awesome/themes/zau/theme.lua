@@ -3,7 +3,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 -- {{{ Main
 local theme = {}
-theme.wallpaper = "/home/zaurak/.config/awesome/themes/zau/greenCastle.png"
+theme.wallpaper = "/home/zaurak/Pictures/Wallpapers/FUGiV8GXoAAnkdY.png"
 -- }}}
 
 -- {{{ Styles
@@ -20,8 +20,8 @@ theme.bg_systray = theme.bg_normal
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap   = dpi(3)
-theme.border_width  = dpi(2)
+theme.useless_gap   = dpi(5)
+theme.border_width  = dpi(3)
 theme.border_normal = "#52472F"
 theme.border_focus  = "#A1AD6C"
 -- }}}

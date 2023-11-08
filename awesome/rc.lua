@@ -270,7 +270,7 @@ awful.screen.connect_for_each_screen(function(s)
         thickness = 2
     }), 6, 6)
     s.spotify = wibox.container.margin(spotify_widget({
-        font = 'Iosevka',
+        font = 'IosevkaTermNF, semibold 11',
         play_icon = '/usr/share/icons/Arc/actions/24/player_pause.png',
         pause_icon = '/usr/share/icons/Arc/actions/24/player_play.png',
         dim_when_paused = true,
@@ -285,19 +285,19 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibar = awful.wibar({
         screen = s,
-        border_width = 2,
+        border_width = 3,
         border_color = beautiful.border_normal,
-        width = 1904,
-        height = 20,
+        width = 1896,
+        height = 25,
         shape = function(cr, width, height)
             gears.shape.hexagon(cr, width, height)
         end,
         bg = beautiful.bg_normal .. "90"
     })
 
-    s.mywibar.y = 5
-    s.mywibar.x = 5
-    s.mywibar:struts { left = 0, right = 0, top = 30, bottom = 0 }
+    s.mywibar.y = 7
+    s.mywibar.x = 8
+    s.mywibar:struts { left = 0, right = 0, top = 37, bottom = 0 }
 
     -- Add widgets to the wibox
     s.mywibar:setup {
@@ -453,8 +453,8 @@ awful.key({ }, "XF86AudioNext", function () awful.util.spawn("playerctl next") e
 awful.key({ modkey, "Shift" }, "n", function () awful.util.spawn("playerctl next") end),
 awful.key({ }, "XF86AudioPrev", function () awful.util.spawn("playerctl previous") end),
 awful.key({ modkey, "Shift" }, "p", function () awful.util.spawn("playerctl previous") end),
-awful.key({ }, "XF86AudioRaiseVolume", function() awful.util.spawn("wpctl set-volume -l 1.2 @DEFAULT_AUDIO_SINK@ 5%+") end),
-awful.key({ modkey }, "[", function() awful.util.spawn("wpctl set-volume -l 1.2 @DEFAULT_AUDIO_SINK@ 5%+") end),
+awful.key({ }, "XF86AudioRaiseVolume", function() awful.util.spawn("wpctl set-volume -l 1.3 @DEFAULT_AUDIO_SINK@ 5%+") end),
+awful.key({ modkey }, "[", function() awful.util.spawn("wpctl set-volume -l 1.3 @DEFAULT_AUDIO_SINK@ 5%+") end),
 awful.key({ }, "XF86AudioLowerVolume", function() awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") end),
 awful.key({ modkey }, "]", function() awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") end),
 awful.key({ }, "XF86AudioMute", function() awful.util.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") end),
