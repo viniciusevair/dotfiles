@@ -32,8 +32,10 @@ require("lazy").setup({
         priority = 1000,
     },
     -- }}}
-    -- {{{ Seoul256
+    -- {{{ Possible Future Stuff
     { "junegunn/seoul256.vim", event = "VeryLazy" },
+    { "baliestri/aura-theme", event = "VeryLazy" },
+    { "sainnhe/everforest", event = "VeryLazy" },
     -- }}}
 
     -- HUD
@@ -391,6 +393,26 @@ require("lazy").setup({
         end,
     },
     --}}}
+    -- {{{ Conform
+    {
+        'stevearc/conform.nvim',
+        config = function ()
+            require("conform").setup({
+                formatters_by_ft = {
+                    lua = { "stylua" },
+                    -- Conform will run multiple formatters sequentially
+                    python = { "black", "isort" },
+                    -- Use a sub-list to run only the first available formatter
+                    javascript = { { "prettierd", "prettier" } },
+                    html = { { "prettierd", "prettier" } },
+                    css = { { "prettierd", "prettier" } },
+                },
+            })
+
+            vim.keymap.set("n", "<F3>", [[<Cmd>lua require("conform").format()<CR>]])
+        end
+    },
+    -- }}}
 
     -- LaTeX
     -- {{{ VimTeX
@@ -419,9 +441,12 @@ require("lazy").setup({
     -- }}}
 
     -- Formatting
-    -- {{{ Vim_Surround
+    -- {{{ Nvim_Surround
     {
-        "tpope/vim-surround",
+        "kylechui/nvim-surround",
+        config = function()
+            require("nvim-surround").setup({})
+        end,
     },
     -- }}}
     -- {{{ Vim_Commentary

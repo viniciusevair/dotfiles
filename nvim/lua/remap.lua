@@ -67,8 +67,7 @@ vim.keymap.set({ "n", "x" }, "<C-u>", "<C-u>zz")
 -- Substitute text without writing deleted text to the register.
 vim.keymap.set("x", "<leader>p", [["_dP]])
 -- Delete without writing to the register.
-vim.keymap.set("n", "<leader>d", [["_d]])
-vim.keymap.set("x", "<leader>d", [["_d]])
+vim.keymap.set({ "n", "x" }, "<leader>d", [["_d]])
 
 -- Black magic stuff.
 -- Replace all occurrences of a word in the file.
