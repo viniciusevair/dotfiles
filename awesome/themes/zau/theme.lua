@@ -3,7 +3,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 
 -- {{{ Main
 local theme = {}
-theme.wallpaper = "/home/zaurak/Pictures/Wallpapers/FUGiV8GXoAAnkdY.png"
+theme.wallpaper = "/home/zaurak/.config/awesome/themes/zau/maskedForest.png"
 -- }}}
 
 -- {{{ Styles
