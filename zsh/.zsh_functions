@@ -83,3 +83,22 @@ zns () {
         vd ~/zenithSanctum/
     fi
 }
+
+OpenEmails () {
+    firefox https://webmail.c3sl.ufpr.br/ &
+    firefox https://outlook.office.com/mail/ &
+    firefox https://mail.google.com/mail/u/1/#inbox &
+}
+
+UpdatePC () {
+    sed -i 's/\(enable_audio_bell\) no/\1 yes/g' ~/.config/kitty/kitty.conf
+    kill -SIGUSR1 $KITTY_PID
+    if [[ $# -eq 1 ]]; then
+        sudo -B reflector --verbose --latest $1 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
+    else
+        sudo -B reflector --verbose --latest 25 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
+    fi
+    yay -Syu --sudoloop
+    sed -i 's/\(enable_audio_bell\) yes/\1 no/g' ~/.config/kitty/kitty.conf
+    kill -SIGUSR1 $KITTY_PID
+}
