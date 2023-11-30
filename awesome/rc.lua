@@ -11,7 +11,7 @@ local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
-local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+local volume_widget = require('awesome-wm-widgets.pactl-widget.volume')
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
@@ -233,7 +233,7 @@ awful.screen.connect_for_each_screen(function(s)
         style = {
             shape = function(cr, width, height)
                 gears.shape.hexagon(cr, width, height)
-            end
+            end,
         },
         layout = {
             spacing = 13,
