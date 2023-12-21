@@ -126,7 +126,8 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
 
 -- Run the code from current buffer. Uses my "Run" function found at zsh
 -- directory. In terminal mode runs the code from the "background" buffer.
-vim.keymap.set("n", "<F12>", "<Cmd>TermExec cmd='Run %'<CR>")
+vim.keymap.set("i", "<F12>", "<Esc><Cmd>:w<CR><Cmd>TermExec cmd='Run %'<CR>")
+vim.keymap.set("n", "<F12>", "<Cmd>:w<CR><Cmd>TermExec cmd='Run %'<CR>")
 vim.keymap.set("t", "<F12>", [[<C-\><C-n><Cmd>ToggleTerm<CR><Cmd>TermExec cmd='Run %'<CR>]])
 
 -- Temp
