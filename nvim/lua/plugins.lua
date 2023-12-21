@@ -544,7 +544,7 @@ require("lazy").setup({
 
                     ls.config.setup({ enable_autosnippets = true })
                     require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/after/snippets/" }
-                    --require("luasnip.loaders.from_vscode").lazy_load()
+                    require("luasnip.loaders.from_vscode").lazy_load()
                     vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
                     vim.keymap.set({"i", "s"}, "<C-D>", function() ls.jump(-1) end, {silent = true})
                 end,
@@ -555,6 +555,7 @@ require("lazy").setup({
             { 'hrsh7th/cmp-buffer' },
             { 'hrsh7th/cmp-path' },
             { 'hrsh7th/cmp-cmdline' },
+            { 'rafamadriz/friendly-snippets' },
         },
     },
     -- }}}
