@@ -22,11 +22,18 @@ Run () {
         FILE_SRC=$(basename "$1" .java)
         javac "$FILE_SRC.java"
         java "$FILE_SRC"
+    elif [[ $1 == *.sql ]]; then
+        psql -f $1 -d school
     elif [[ $1 == *.py ]]; then
         py3 "$1"
     else
         echo "Formato de arquivo não suportado."
     fi
+}
+
+SetRunDB () {
+    TABS="       "
+    sed -i "s/^$TABS psql.*/$TABS psql -f \$1 -d $1/" ~/.config/zsh/.zsh_functions
 }
 
 alias val='valgrind --leak-check=full --show-leak-kinds=all -s'
