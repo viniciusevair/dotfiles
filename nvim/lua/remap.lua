@@ -129,6 +129,3 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
 vim.keymap.set("i", "<F12>", "<Esc><Cmd>:w<CR><Cmd>TermExec cmd='Run %'<CR>")
 vim.keymap.set("n", "<F12>", "<Cmd>:w<CR><Cmd>TermExec cmd='Run %'<CR>")
 vim.keymap.set("t", "<F12>", [[<C-\><C-n><Cmd>ToggleTerm<CR><Cmd>TermExec cmd='Run %'<CR>]])
-
--- Temp
-vim.keymap.set("i", "<C-z>", "*(long int*)")
