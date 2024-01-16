@@ -90,4 +90,6 @@ vim.g.loaded_netrwPlugin = 1
     -- HTML
 vim.cmd [[autocmd FileType html setlocal ts=2 sts=2 sw=2]]
     -- JS
-vim.cmd [[autocmd FileType javascript setlocal ts=2 sts=2 sw=2]]
+--vim.cmd [[autocmd FileType javascript setlocal ts=2 sts=2 sw=2]]
+    -- Python
+vim.cmd [[autocmd FileType python setlocal textwidth=100]]
