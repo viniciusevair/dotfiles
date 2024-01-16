@@ -723,5 +723,5 @@ end)
             cmd))
         end
     end
-    run_once({"picom -b", "blueman-manager"})
+    run_once({ "picom -b", "blueman-manager" })
     -- }}}
