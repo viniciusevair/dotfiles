@@ -13,4 +13,11 @@ return {
     {
         t("print(f\""), i(1), t("\")"),
     }),
+    s({
+        trig = "spri",
+        dscr = "Simple print function",
+    },
+    {
+        t("print("), i(1), t(")"),
+    }),
 }
