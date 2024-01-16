@@ -22,8 +22,10 @@ Run () {
         FILE_SRC=$(basename "$1" .java)
         javac "$FILE_SRC.java"
         java "$FILE_SRC"
+    elif [[ $1 == *.js ]]; then
+        node $1
     elif [[ $1 == *.sql ]]; then
-        psql -f $1 -d school
+        psql -f $1 -d dvdrental
     elif [[ $1 == *.py ]]; then
         py3 "$1"
     else
