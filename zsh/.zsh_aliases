@@ -12,7 +12,7 @@ alias ufpr="ssh ves22@ssh.c3sl.ufpr.br"
 alias Moodle="firefox https://moodle.c3sl.ufpr.br/ &"
 
 # Scripts
-alias ClockFix="sudo ClockFix"
+alias ClockFix="sudo -S ClockFix"
 
 # Courses aliases
 alias ci1001='vd ~/Documents/2022.2/CI1001_Programacao1/'
@@ -66,4 +66,4 @@ alias picconfig='nvim ~/.config/picom/picom.conf'
 # Keyboard stuff
 alias KbdOff='xinput set-prop "AT Translated Set 2 keyboard" "Device Enabled" 0'
 alias KbdOn='xinput set-prop "AT Translated Set 2 keyboard" "Device Enabled" 1'
-alias FixKBD='xmodmap ~/.config/Xmodmap'
+alias KBDfix='xmodmap ~/.config/Xmodmap'

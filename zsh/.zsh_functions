@@ -74,9 +74,11 @@ import_git () {
     cd
 }
 
-KBDstartup () {
+PCstartup () {
     KbdOff
-    FixKBD
+    KBDfix
+    PASSWD="zmfxom74"
+    echo $PASSWD | ClockFix
 }
 
 ResetHS () {
@@ -97,6 +99,7 @@ OpenEmails () {
     firefox https://webmail.c3sl.ufpr.br/ &
     firefox https://outlook.office.com/mail/ &
     firefox https://mail.google.com/mail/u/1/#inbox &
+    firefox https://webmail-seguro.com.br/venkonetworks.com/ &
 }
 
 UpdatePC () {
