@@ -635,6 +635,8 @@ properties = { tag = "music" } },
 properties = { tag = "music" } },
 { rule = { class = "[Pp]avucontrol" },
 properties = { tag = "music" } },
+{ rule = { class = "[Dd]iscord" },
+properties = { tag = "home" } },
 
 }
 -- }}}
