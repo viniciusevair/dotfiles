@@ -1,0 +1,27 @@
+# Send Files to Docker
+SFD () {
+}
+
+# Get Files from Docker
+GFD () {
+    docker cp ocnos_6.4:/opt/ZebOS8NG/platform/linux/mkall_err.txt .
+    docker cp ocnos_6.4:/opt/ZebOS8NG/platform/linux/mkall_output.txt .
+}
+
+# Compile Files from Docker
+CFD () {
+    docker exec ocnos_6.4 /bin/bash -c "./buildZeb.sh"
+    sudo cp /home/evair/Documents/Venko/Repositories/repo640/ZebOS8NG/platform/linux/bin/libcml.so /usr/lib
+    #docker exec ocnos_6.4 /bin/bash -c "./buildOYuma.sh"
+}
+
+# Run Compilation from Docker
+RCD () {
+    #SFD
+    CFD
+    GFD
+}
+
+SD () {
+    docker start ocnos_$1 && docker exec -it ocnos_$1 /bin/bash
+}

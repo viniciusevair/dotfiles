@@ -1,0 +1,164 @@
+# Here lies all of my mini scripts that I use daily. 
+
+# Make a directory and change CWD to it.
+take () {
+    mkdir -p $1 && cd $1
+}
+
+# "visual" cd.
+vd () {
+    cd $1 && ls -a
+}
+
+# General compile/run files.
+Run () {
+    if [[ -f "makefile" ]]; then
+        make run
+    elif [[ $1 == *.c ]]; then
+        FILE_SRC=$(basename "$1" .c)
+        gcc -Wall -g "$FILE_SRC.c" -o "$FILE_SRC" -lm
+        "./$FILE_SRC"
+    elif [[ $1 == *.cpp ]]; then
+        FILE_SRC=$(basename "$1" .cpp)
+        g++ -Wall -g "$FILE_SRC.cpp" -o "$FILE_SRC"
+        "./$FILE_SRC"
+    elif [[ $1 == *.s ]]; then
+        FILE_SRC=$(basename "$1" .s)
+        as -g "$FILE_SRC.s" -o "$FILE_SRC.o"
+        ld -g "$FILE_SRC.o" -o "$FILE_SRC" -dynamic-linker /lib/ld-linux-x86-64.so.2 /usr/lib/crt1.o /usr/lib/crti.o /usr/lib/crtn.o -lc
+        "./$FILE_SRC"
+    elif [[ $1 == *.java ]]; then
+        FILE_SRC=$(basename "$1" .java)
+        javac "$FILE_SRC.java"
+        java "$FILE_SRC"
+    elif [[ $1 == *.js ]]; then
+        node $1
+    elif [[ $1 == *.sql ]]; then
+        psql -f $1 -d dvdrental
+    elif [[ $1 == *.py ]]; then
+        py3 "$1"
+    else
+        echo "Formato de arquivo não suportado."
+    fi
+}
+
+# Change current working DB for PostgreSQL in the function above.
+SetRunDB () {
+    TABS="       "
+    sed -i "s/^$TABS psql.*/$TABS psql -f \$1 -d $1/" ~/.config/zsh/.zsh_functions
+}
+
+# Valgrind shortcut. Felt like it's better here than in aliases file.
+alias val='valgrind --leak-check=full --show-leak-kinds=all -s'
+
+# Start current directory as a git repo that already has files in it.
+startGitPull () {
+    git init
+    git remote add origin git@github.com:viniciusevair/$1.git
+    git pull --set-upstream origin main
+}
+
+# Commit everything in the directory and make the first commit to repo.
+startGit () {
+    git init
+    git add .
+    git commit -m "First Commit"
+    git remote add origin git@github.com:viniciusevair/$1.git
+    git push --set-upstream origin main
+}
+
+# Turnoff laptop's keyboard and fix my <ESC> macro on 60% kbd.
+KBDstartup () {
+    KbdOff
+    FixKBD
+}
+
+# Connect HeadSet
+CHS () {
+    bluetoothctl connect 60:F4:3A:A2:2C:44
+}
+
+# Reset HeadSet
+RHS () {
+    bluetoothctl disconnect 60:F4:3A:A2:2C:44
+    sleep 5
+    bluetoothctl connect 60:F4:3A:A2:2C:44
+}
+
+# Open all emails on the browser
+OpenEmails () {
+    firefox https://webmail-seguro.com.br/venkonetworks.com/ &
+    firefox https://webmail.c3sl.ufpr.br/ &
+    firefox https://outlook.office.com/mail/ &
+    firefox https://mail.google.com/mail/u/0/#inbox &
+    firefox https://mail.google.com/mail/u/1/#inbox &
+}
+
+# Open all emails and the calendar. Then go to reports directory.
+DailyDrive () {
+    OpenEmails
+    firefox https://calendar.google.com/calendar/u/1/r &
+    Repday
+}
+
+# Update the mirrorlist and then the whole PC. Only works in arch btw.
+UpdatePC () {
+    if [[ $# -eq 1 ]]; then
+        sudo -B reflector --verbose --latest $1 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
+    else
+        sudo -B reflector --verbose --latest 25 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
+    fi
+    yay -Syu --sudoloop
+}
+
+# Change terminal background opacity.
+BGO () {
+    OPACITY=$(grep 'opacity' ~/.config/wezterm/wezterm.lua | cut -d' ' -f3)
+    if [[ $OPACITY = '1' ]]; then
+        sed -i 's/\(opacity = \)1/\10.9/' ~/.config/wezterm/wezterm.lua
+    else
+        sed -i 's/\(opacity = \)0.9/\11/' ~/.config/wezterm/wezterm.lua
+    fi
+}
+
+# bc shortcut so the program doesn't stay in calculator mode.
+BC () {
+    echo $1 | bc -l
+}
+
+# Find in History
+FH () {
+    history 0 | grep "$*"
+}
+
+# Get all config xpath from yang file.
+GXP () {
+    pyang -f jstree $1 | grep -A3 "<td nowrap>config</td>" | grep -v "<td nowrap>config</td>" | grep -v "<td>" | grep -v "\-\-" | sed -e 's/^\s*//g' | sed -e 's/<td nowrap>//g' | sed -e 's/<\/td<\/tr>//g' | sed -e 's/<\/td>//g' | sed -e 's/[^\/:]\+://g'
+}
+
+# Connect to IPI VPN
+IPIVPN () {
+    PASSWD="V!nc0s643@#"
+    echo $PASSWD | sudo openconnect 103.112.82.2 --passwd-on-stdin --protocol=gp --user=Vinicius.Silva --servercert pin-sha256:zIF2aIFmbrDykxF4uZFV5G/USKgCsMQuYSjwSsAUApQ=
+}
+
+# Start VM and connect through virsh console
+VM () {
+    VST $1
+    VC $1
+}
+
+# Import Yuma Modules
+YM () {
+    scp -r ocnos@192.168.122.$1:/usr/share/yuma/modules ~/Templates/
+    sudo cp ~/Templates/modules /usr/share/yuma/ -r
+}
+
+YC () {
+    yangcli server=192.168.122.$1 user=ocnos password=ocnos --display-mode=xml
+}
+
+# Source other function files.
+if [ -r ~/.config/zsh/.zsh_docker ]; then
+    source ~/.config/zsh/.zsh_docker
+fi

@@ -1,0 +1,69 @@
+# Software Handling aliases
+alias :q='exit'
+alias :w='source ~/.zshrc'
+alias nautilus='nautilus -w'
+alias PegaClasse='xprop | grep WM_CLASS'
+alias DirFileCount='du -a | cut -d/ -f2 | sort | uniq -c | sort -nr'
+alias DirFileSize='du -shc * | sort -nr'
+
+# Uni stuff
+alias ufpr="ssh ves22@ssh.c3sl.ufpr.br"
+alias Moodle="firefox https://moodle.c3sl.ufpr.br/ &"
+
+# Scripts
+alias ClockFix="sudo ClockFix"
+
+# Navigation aliases
+alias ..='vd ..'
+alias ...='vd ../..'
+alias ....='vd ../../..'
+alias .....='vd ../../../..'
+alias awedirectory='vd ~/.config/awesome/'
+alias vimdirectory='vd ~/.config/nvim/lua/'
+
+# Report Shortcuts
+alias Repday='vd ~/Documents/Reports/daily_reports/'
+alias repdir='vd ~/Documents/Reports/'
+alias rnv='nv /home/evair/Documents/Reports/daily_reports/$DATE.txt'
+
+# Git aliases
+alias gitps='git push'
+alias gitPl='git pull'
+alias gita='git add'
+alias gitA='git commit -a -m'
+alias gitb='git checkout'
+alias gitB='git branch'
+alias gitc='git commit -m'
+alias gits='git status'
+alias gitres='git restore'
+alias gitl='git log'
+
+# Apps shortcuts
+alias nv='nvim'
+
+# Config aliases
+alias .zshconfig='nvim ~/.config/zsh/.zshrc'
+alias Aliases='nvim ~/.config/zsh/.zsh_aliases'
+alias Functions='nvim ~/.config/zsh/.zsh_functions'
+alias DFunctions='nvim ~/.config/zsh/.zsh_docker'
+alias .p10kconfig='nvim ~/.config/zsh/.p10k.zsh'
+alias vimconfig='nvim ~/.config/nvim/lua/'
+alias aweconfig='nvim ~/.config/awesome/rc.lua'
+alias picconfig='nvim ~/.config/picom/picom.conf'
+alias wezconfig='nvim ~/.config/wezterm/wezterm.lua'
+
+# Keyboard stuff
+alias KbdOff='xinput set-prop "AT Translated Set 2 keyboard" "Device Enabled" 0'
+alias KbdOn='xinput set-prop "AT Translated Set 2 keyboard" "Device Enabled" 1'
+alias FixKBD='xmodmap ~/.config/Xmodmap'
+
+# Get CLI from datamodel
+alias AWKcommand='awk "c&&! --c;/CLI \(/{c=2}"'
+
+# Small ping so I don't have to Ctrl+C eventually.
+alias pingg='ping -c 4'
+
+# VM Shortcuts
+alias VSH='virsh shutdown'
+alias VST='virsh start'
+alias VC='virsh console'
