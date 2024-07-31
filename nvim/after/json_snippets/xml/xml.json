@@ -1,0 +1,423 @@
+{
+        "Datamodel template": {
+                "prefix": [
+                        "sst"
+                ],
+                "body": [
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+                    "<cml:CMLDataModel xmlns:cml=\"http://www.ipinfusion.com/CMLSchema\"",
+                    "\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"",
+                    "\tcml:noNamespaceSchemaLocation=\"cml_data_model.xsd\">",
+                    "",
+                    "<managedObjectClass name=\"$1\" desc=\"$2\">",
+                    "\t<import>cml_data_types</import>",
+                    "",
+                    "\t<!-- Container -->",
+                    "\t<!-- ObjectList -->",
+                    "\t<!-- Grouping --> ",
+                    "\t<!-- Operations -->",
+                    "",
+                    "</managedObjectClass>",
+                    "",
+                    "</cml:CMLDataModel>"
+                ]
+        },
+	"Grouping for top data": {
+		"prefix": [
+			"grouping-top"
+		],
+		"body": [
+			"<grouping name=\"$1\" desc=\"Grouping for $2\">",
+			"</grouping>"
+		]
+	},
+	"Grouping for top data with containers for configuration and state data": {
+		"prefix": [
+			"grouping-top-full"
+		],
+		"body": [
+			"<grouping name=\"$1\" desc=\"Grouping for $2\">",
+			"\t<container name=\"config\" desc=\"Configuration data for $2\">",
+			"\t\t<uses grouping=\"$1\"/>",
+			"\t</container>",
+			"\t<container name=\"state\" desc=\"Operational state data for $2\">",
+			"\t\t<category>CML_RUNTIME</category>",
+			"\t\t<uses grouping=\"$1\"/>",
+			"\t</container>",
+			"</grouping>"
+		]
+	},
+	"Grouping for configuration data": {
+		"prefix": [
+			"grouping-config"
+		],
+		"body": [
+			"<grouping name=\"$1\" desc=\"Grouping for $1 configuration data\">",
+			"\t$0",
+			"</grouping>"
+		]
+	},
+	"Grouping for operational state data": {
+		"prefix": [
+			"grouping-state"
+		],
+		"body": [
+			"<grouping name=\"$1\" desc=\"Grouping for $1 operational state data\">",
+			"\t$0",
+			"</grouping>"
+		]
+	},
+	"Container": {
+		"prefix": [
+			"container"
+		],
+		"body": [
+			"<container name=\"$1\" desc=\"Container for $2\">",
+
+			"</container>"
+		]
+	},
+	"Container for configuration data": {
+		"prefix": [
+			"container-config"
+		],
+		"body": [
+			"<container name=\"config\" desc=\"Configuration data for $1\">",
+			"\t<uses grouping=\"$2\"/>",
+			"</container>"
+		]
+	},
+	"Container for operational state data": {
+		"prefix": [
+			"container-state"
+		],
+		"body": [
+			"<container name=\"state\" desc=\"Operational state data for $1\">",
+			"\t<category>CML_RUNTIME</category>",
+			"\t<uses grouping=\"$2\"/>",
+			"</container>"
+		]
+	},
+	"Containers for configuration and state data": {
+		"prefix": [
+			"container-config-state"
+		],
+		"body": [
+			"<container name=\"config\" desc=\"Configuration data for $2\">",
+			"\t<uses grouping=\"$1\"/>",
+			"</container>",
+			"<container name=\"state\" desc=\"Operational state data for $2\">",
+			"\t<category>CML_RUNTIME</category>",
+			"\t<uses grouping=\"$1\"/>",
+			"</container>"
+		]
+	},
+	"List": {
+		"prefix": [
+			"objectlist",
+			"list"
+		],
+		"body": [
+			"<objectlist name=\"$1\" desc=\"List of $2\">",
+			"\t$0",
+			"</objectlist>"
+		]
+	},
+	"List with key and containers for configuration and state data": {
+		"prefix": [
+			"objectlist-full",
+			"list-full"
+		],
+		"body": [
+			"<objectlist name=\"$1\" desc=\"List of $2\">",
+			"\t<attr>",
+			"\t\t<name>$3</name>",
+			"\t\t<type>$4</type>",
+			"\t\t<flag>CML_RDN</flag>",
+			"\t\t<leafref>../config/$3</leafref>",
+			"\t</attr>",
+			"\t<container name=\"config\" desc=\"Configuration data for $5\">",
+			"\t\t<uses grouping=\"$7\"/>",
+			"\t</container>",
+			"\t<container name=\"state\" desc=\"Operational state data for $6\">",
+			"\t\t<category>CML_RUNTIME</category>",
+			"\t\t<uses grouping=\"$7\"/>",
+			"\t</container>",
+			"</objectlist>"
+		]
+	},
+	"List with two keys and containers for configuration and state data": {
+		"prefix": [
+			"objectlist-2-full",
+			"list-2-full"
+		],
+		"body": [
+			"<objectlist name=\"$1\" desc=\"List of $2\">",
+			"\t<attr>",
+			"\t\t<name>$3</name>",
+			"\t\t<type>$4</type>",
+			"\t\t<flag>CML_RDN</flag>",
+			"\t\t<leafref>../config/$3</leafref>",
+			"\t</attr>",
+			"\t<attr>",
+			"\t\t<name>$5</name>",
+			"\t\t<type>$6</type>",
+			"\t\t<flag>CML_RDN</flag>",
+			"\t\t<leafref>../config/$5</leafref>",
+			"\t</attr>",
+			"\t<container name=\"config\" desc=\"Configuration data for $7\">",
+			"\t\t<uses grouping=\"$9\"/>",
+			"\t</container>",
+			"\t<container name=\"state\" desc=\"Operational state data for $8\">",
+			"\t\t<category>CML_RUNTIME</category>",
+			"\t\t<uses grouping=\"$9\"/>",
+			"\t</container>",
+			"</objectlist>"
+		]
+	},
+	"Attribute": {
+		"prefix": [
+			"attribute",
+			"leaf"
+		],
+		"body": [
+			"<attr>",
+			"\t<name>$1</name>",
+			"\t<type>$2</type>",
+			"\t<description>Use this attribute </description>",
+			"</attr>"
+		]
+	},
+	"Attribute with flag and cli directive": {
+		"prefix": [
+			"attribute-full",
+			"leaf-full"
+		],
+		"body": [
+			"<attr>",
+			"\t<name>$1</name>",
+			"\t<type>$2</type>",
+			"\t<flag>$3</flag>",
+			"\t<description>Use this attribute </description>",
+			"\t<cli>",
+			"\t\t$4",
+			"\t</cli>",
+			"</attr>"
+		]
+	},
+	"Attribute multi-valued": {
+		"prefix": [
+			"attribute-multi-valued",
+			"leaf-list"
+		],
+		"body": [
+			"<attr>",
+			"\t<name>$1</name>",
+			"\t<type>$2</type>",
+			"\t<flag>CML_MULTI_VALUED</flag>",
+			"\t<description>Use this attribute </description>",
+			"\t<cli>",
+			"\t\t$4",
+			"\t</cli>",
+			"</attr>"
+		]
+	},
+	"Attribute with key directive and leafref": {
+		"prefix": [
+			"attribute-key",
+			"key"
+		],
+		"body": [
+			"<attr>",
+			"\t<name>$1</name>",
+			"\t<type>$2</type>",
+			"\t<flag>CML_RDN</flag>",
+			"\t<leafref>$3</leafref>",
+			"\t<description>Use this attribute </description>",
+			"</attr>"
+		]
+	},
+	"Key directive": {
+		"prefix": [
+			"rdn",
+			"key-flag"
+		],
+		"body": [
+			"<flag>CML_RDN</flag>"
+		]
+	},
+	"Leafref directive": {
+		"prefix": [
+			"leafref"
+		],
+		"body": [
+			"<leafref>$1</leafref>"
+		]
+	},
+	"Multi-valued directive": {
+		"prefix": [
+			"multi-valued"
+		],
+		"body": [
+			"<flag>CML_MULTI_VALUED</flag>"
+		]
+	},
+	"When": {
+		"prefix": [
+			"when"
+		],
+		"body": [
+			"<when>",
+			"\t<expr xPathExpr=\"$1\"/>",
+			"</when>"
+		]
+	},
+	"if feature": {
+		"prefix": [
+			"if-feature"
+		],
+		"body": [
+			"<if-feature>$1</if-feature>"
+		]
+	},
+	"if not feature": {
+		"prefix": [
+			"if-not-feature"
+		],
+		"body": [
+			"<if-not-feature>$1</if-not-feature>"
+		]
+	},
+	"Uses grouping": {
+		"prefix": [
+			"uses"
+		],
+		"body": [
+			"<uses grouping=\"$1\"/>"
+		]
+	},
+	"Type": {
+		"prefix": [
+			"type"
+		],
+		"body": [
+			"<type>$1</type>"
+		]
+	},
+	"Flag": {
+		"prefix": [
+			"flag"
+		],
+		"body": [
+			"<flag>$1</flag>"
+		]
+	},
+	"CLI flag": {
+		"prefix": [
+			"cli-flag"
+		],
+		"body": [
+			"<cliFlag>$1</cliFlag>"
+		]
+	},
+	"CLI directive": {
+		"prefix": [
+			"cli"
+		],
+		"body": [
+			"<cli>",
+			"\t$1",
+			"</cli>"
+		]
+	},
+	"Input": {
+		"prefix": [
+			"input"
+		],
+		"body": [
+			"<input displayString=\"$1\" helpString=\"$2\"/>"
+		]
+	},
+	"Default": {
+		"prefix": [
+			"default"
+		],
+		"body": [
+			"<default>$1</default>"
+		]
+	},
+	"Prepend": {
+		"prefix": [
+			"prepend"
+		],
+		"body": [
+			"<prependstr>$0</prependstr>"
+		]
+	},
+	"Description": {
+		"prefix": [
+			"desc"
+		],
+		"body": [
+			"<desc displayString=\"$1\" helpString=\"$2\"/>"
+		]
+	},
+	"Cli-set": {
+		"prefix": [
+			"cli-set"
+		],
+		"body": [
+			"<cli-set-sequence>$0</cli-set-sequence>"
+		]
+	},
+	"Cli-delete": {
+		"prefix": [
+			"cli-delete"
+		],
+		"body": [
+			"<cli-delete-sequence>$0</cli-delete-sequence>"
+		]
+	},
+	"Display-cli": {
+		"prefix": [
+			"display-cli"
+		],
+		"body": [
+			"<display-cli>$0</display-cli"
+		]
+	},
+	"Range": {
+		"prefix": [
+			"range"
+		],
+		"body": [
+			"<range min=\"$1\" max=\"$2\" helpString=\"$3\"/>"
+		]
+	},
+	"Mandatory flag": {
+		"prefix": [
+			"mandatory-flag"
+		],
+		"body": [
+			"<flag>CML_INITIALIZED</flag>"
+		]
+	},
+	"Hidden CLI flag": {
+		"prefix": [
+			"hidden-cli-flag"
+		],
+		"body": [
+			"<cliFlag>hidden-cli</cliFlag>"
+		]
+	},
+	"Hidden Yang directive": {
+		"prefix": [
+			"hidden-yang"
+		],
+		"body": [
+			"<yang>",
+			"\t<drop-element>yes</drop-element>",
+			"</yang>"
+		]
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"name": "datamodel-extension",
+	"displayName": "XML snippets",
+	"description": "Snippets for xml datamodel",
+	"version": "0.0.1",
+	"publisher": "nogoseke",
+	"engines": {
+		"vscode": "^1.50.0"
+	},
+	"categories": [
+		"Snippets"
+	],
+	"contributes": {
+		"snippets": [
+			{
+				"language": "xml",
+				"path": "./xml/xml.json"
+			}
+		]
+	}
+}
