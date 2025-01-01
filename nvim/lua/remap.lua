@@ -75,16 +75,19 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]])
 -- Replace all occurrences of a word in the line.
 vim.keymap.set({ "n", "v" }, "ß", [[:s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
 -- Change spacing between parenthesis. "a" to add space, "b" to remove.
-vim.keymap.set("n", "<leader>as", [[<Cmd>%s/\(\a\)(/\1 (/gc<CR>]])
-vim.keymap.set("n", "<leader>bs", [[<Cmd>%s/\(\a\) (/\1(/gc<CR>]])
+vim.keymap.set("n", "<leader>as", [[mz<Cmd>%s/\(\a\)(/\1 (/gc<CR>`z]])
+vim.keymap.set("n", "<leader>bs", [[mz<Cmd>%s/\(\a\) (/\1(/gc<CR>`z]])
+vim.keymap.set("v", "<leader>as", [[mz<Cmd>s/\(\a\)(/\1 (/gc<CR>`z]])
+vim.keymap.set("v", "<leader>bs", [[mz<Cmd>s/\(\a\) (/\1(/gc<CR>`z]])
 -- Change between snake and camel case. "a" for snake, "b" for camel.
-vim.keymap.set("n", "<leader>ac", [[mz<Cmd>%s/\(\l\)_\(\l\)/\1\U\2/g<CR>`z]])
-vim.keymap.set("n", "<leader>bc", [[mz<Cmd>%s/\(\l\)\(\u\)/\1_\l\2/g<CR>`z]])
+vim.keymap.set("n", "<leader>ac", [[mz<Cmd>%s/\(\l\)_\(\l\)/\1\U\2/gc<CR>`z]])
+vim.keymap.set("n", "<leader>bc", [[mz<Cmd>%s/\(\l\)\(\u\)/\1_\l\2/gc<CR>`z]])
+vim.keymap.set("v", "<leader>ac", [[mz<Cmd>s/\(\l\)_\(\l\)/\1\U\2/gc<CR>`z]])
+vim.keymap.set("v", "<leader>bc", [[mz<Cmd>s/\(\l\)\(\u\)/\1_\l\2/gc<CR>`z]])
 
 -- Writing.
 -- C pointer arrows.
 vim.keymap.set({ "i", "t" }, "<C-a>", "->")
-vim.keymap.set({ "i", "t" }, "<C-s>", "<-")
 -- Capitalize word
 vim.keymap.set("i", "<C-c>", "<Esc>mCbg~l`Ca")
 -- Cut/Delete text till parenthesis
@@ -100,17 +103,20 @@ vim.keymap.set("i", "<C-CR>", "<CR><Esc>O")
 vim.keymap.set("n", "<C-CR>", "i<CR><Esc>O")
 -- More sane cut/delete word shortcut
 vim.keymap.set("n", "cw", "ciw")
-vim.keymap.set("n", "cW", "ciW")
 vim.keymap.set("n", "dw", "daw")
+vim.keymap.set("n", "cW", "ciW")
 vim.keymap.set("n", "dW", "daW")
--- Duplicate line
+-- Duplicate current line
 vim.keymap.set("n", "yp", "yyp")
+-- Duplicate current visual selection
+vim.keymap.set("v", "<leader>lp", "y`>p")
 
 -- Formatting.
 -- Fix indentation inside a function.
 vim.keymap.set("n", "§", "mzgg=G`zzz")
 -- Remove the space before current word.
 vim.keymap.set("n", "æ", "mzEBhx`zh")
+-- Merge whole paragraph onto only one line
 vim.keymap.set("n", "<C-j>", "vipJ<Esc>")
 
 -- Yank to normal register
@@ -137,6 +143,10 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { silent = true })
 
 -- Run the code from current buffer. Uses my "Run" function found at zsh
 -- directory. In terminal mode runs the code from the "background" buffer.
-vim.keymap.set("i", "<F12>", "<Esc><Cmd>:w<CR><Cmd>TermExec cmd='Run %'<CR>")
-vim.keymap.set("n", "<F12>", "<Cmd>:w<CR><Cmd>TermExec cmd='Run %'<CR>")
+vim.keymap.set("i", "<F12>", "<Esc><Cmd>w<CR><Cmd>TermExec cmd='Run %'<CR>")
+vim.keymap.set("n", "<F12>", "<Cmd>w<CR><Cmd>TermExec cmd='Run %'<CR>")
 vim.keymap.set("t", "<F12>", [[<C-\><C-n><Cmd>ToggleTerm<CR><Cmd>TermExec cmd='Run %'<CR>]])
+
+-- temp
+vim.keymap.set("i", "<C-z>", "struct graph_t*")
+vim.keymap.set("i", "<C-x>", "struct set_t*")

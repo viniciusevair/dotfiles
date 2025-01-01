@@ -4,7 +4,7 @@ return {
         dscr = "Standard code starter.",
     },
     {
-        t({ "#include <iostream>", "" }),
+        t({ "#include <stdio.h>", "#include <stdlib.h>", "" }),
         t({ "", "int main(int argc, char *argv[]) {", "\t" }), i(0),
         t({ "", "", "\treturn 0;", "}" }),
     }),
@@ -18,7 +18,7 @@ return {
     }),
 
     s({
-        trig = "incla",
+        trig = "#inca",
         dscr = "Include a \"library\".",
     },
     {
@@ -26,7 +26,7 @@ return {
     }),
 
     s({
-        trig = "inclb",
+        trig = "#incb",
         dscr = "Include a <library>.",
         priority = 2000,
     },
@@ -35,7 +35,7 @@ return {
     }),
 
     s({
-        trig = "def",
+        trig = "#def",
         dscr = "Define a MACRO.",
     },
     {

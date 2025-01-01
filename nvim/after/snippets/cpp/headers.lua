@@ -11,6 +11,16 @@ return {
     }),
 
     s({
+        trig = "sst",
+        dscr = "Standard code starter.",
+    },
+    {
+        t({ "#include <iostream>", "" }),
+        t({ "", "int main(int argc, char *argv[]) {", "\t" }), i(0),
+        t({ "", "", "\treturn 0;", "}" }),
+    }),
+
+    s({
         trig = "sls1",
         dscr = "Standard libraries loader.",
     },

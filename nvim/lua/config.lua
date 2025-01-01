@@ -9,8 +9,6 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "none" } )
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" } )
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" } )
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff" } )
-vim.api.nvim_set_hl(0, "lualine_transitional_lualine_a_buffers_active_to_lualine_c_normal", { fg = "#ffffff" } )
-
     -- Highlight current cursor position
 set.cursorline = true
 set.nu = true
@@ -84,7 +82,6 @@ set.virtualedit = "block"
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldlevel = 999
-set.textwidth = 100
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
