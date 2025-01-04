@@ -8,11 +8,11 @@ return {
   }),
 
   s({
-    trig = "endll",
+    trig = "endl",
     dscr = "Standard endline output",
   },
   {
-    t("std::endl;"),
+    t("std::endl"),
   }),
 
   s({
@@ -21,5 +21,13 @@ return {
   },
   {
     t("std::cout << "), i(1, "text"), t(" << std::endl;"),
+  }),
+
+  s({
+    trig = "xmln",
+    dscr = "description",
+  },
+  {
+    t("pugi::xml_node"),
   }),
 }

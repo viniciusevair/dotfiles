@@ -308,29 +308,54 @@ require("lazy").setup({
             "nvim-lua/plenary.nvim",
         },
         config = function()
-            local builtin = require("telescope.builtin")
+            -- Helper function to find git root
+            require('telescope.utils').get_git_root = function()
+              local git_dir = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+              return git_dir and vim.fn.fnamemodify(git_dir, ":p") or nil
+            end
+            local t_builtin = require("telescope.builtin")
+            local t_utils = require('telescope.utils')
+            local t_actions = require('telescope.actions')
             -- Open telescope in current working directory
-            vim.keymap.set("n", "<leader>ff",  "<CMD>lua require('telescope.builtin').find_files({ cwd = '$PWD' })<CR>", {})
+            vim.keymap.set("n", "<leader>fwd", function() t_builtin.find_files({ cwd = '$PWD' }) end, {})
             -- Open telescope in home directory
-            vim.keymap.set("n", "<leader>fh", "<CMD>lua require('telescope.builtin').find_files({ cwd = '$HOME' })<CR>", {})
+            vim.keymap.set("n", "<leader>ff", function() t_builtin.find_files({ cwd = '$HOME' }) end, {})
             -- Open telescope in current buffer file directory
-            vim.keymap.set("n", "<leader>fc", "<CMD>lua require('telescope.builtin').find_files({ cwd = require('telescope.utils').buffer_dir() })<CR>", {})
+            vim.keymap.set("n", "<leader>fwb", function() t_builtin.find_files({ cwd = t_utils.buffer_dir() }) end, {})
             -- Open telescope in a list of current open buffers
-            vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+            vim.keymap.set("n", "<leader>fb", t_builtin.buffers, {})
             -- Open telescope in the jumplist history
-            vim.keymap.set("n", "<leader>fj", builtin.jumplist, {})
+            vim.keymap.set("n", "<leader>fj", t_builtin.jumplist, {})
             -- Open telescope in a list with all files from current git repository
-            vim.keymap.set("n", "<leader>fg", builtin.git_files, {})
-            vim.keymap.set("n", "<leader>fl", builtin.live_grep, {})
+            vim.keymap.set("n", "<leader>frf", t_builtin.git_files, {})
+            -- Open telescope in grep mode for current working directory
+            vim.keymap.set("n", "<leader>fg", t_builtin.live_grep, {})
+            -- Open telescope in grep mode for all files from current git repository
+            vim.keymap.set("n", "<leader>frg", function() t_builtin.live_grep({ cwd = t_utils.get_git_root() }) end, {})
+            -- Open telescope in grep mode for all files from home
+            vim.keymap.set("n", "<leader>fhg", function() t_builtin.live_grep({ cwd = '$HOME' }) end, {})
+            -- Reopen last telescope window
+            vim.keymap.set("n", "<leader>frr", t_builtin.resume, {})
+
 
             require("telescope").setup({
-                defaults = {
-                    borderchars = {
-                        preview = telescopeBorder,
-                        prompt = telescopeBorder,
-                        results = telescopeBorder,
-                    },
-                }
+              defaults = {
+                borderchars = {
+                  preview = telescopeBorder,
+                  prompt = telescopeBorder,
+                  results = telescopeBorder,
+                },
+                mappings = {
+                  i = {
+                    ["<Tab>"] = t_actions.toggle_selection + t_actions.move_selection_worse,
+                    ["<Ctrl-o>"] = t_actions.send_selected_to_qflist + t_actions.open_qflist,
+                  },
+                  n = {
+                    ["<Tab>"] = t_actions.toggle_selection + t_actions.move_selection_worse,
+                    ["<Ctrl-o>"] = t_actions.send_selected_to_qflist + t_actions.open_qflist,
+                  },
+                },
+              }
             })
         end,
     },
@@ -422,7 +447,6 @@ require("lazy").setup({
     {
         "lervag/vimtex",
         ft = "tex",
-        lazy = false,
         config = function()
             vim.g.vimtex_view_method = 'zathura'
             vim.g.vimtex_quickfix_ignore_filters = {
