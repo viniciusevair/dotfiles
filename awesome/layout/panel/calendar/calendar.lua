@@ -4,7 +4,7 @@ local beautiful     = require('beautiful')
 
 local dpi           = beautiful.xresources.apply_dpi
 local helpers       = require('helpers')
-local color_list    = require("themes.colors")
+local colors    = require("themes.colors")
 
 local calendar_wdgt = wibox.widget {
 	widget       = wibox.widget.calendar.month,
@@ -27,13 +27,13 @@ local calendar_wdgt = wibox.widget {
 			torender.font = 'IosevkaTermNF bold ' .. 15
 		end
 
-		local colors = {
-			header  = color_list.lightblue,
-			focus   = color_list.orange,
-			normal  = color_list.fg_normal,
-			weekday = color_list.magenta,
+		local color_list = {
+			header  = colors.lightblue,
+			focus   = colors.orange,
+			normal  = colors.fg_normal,
+			weekday = colors.magenta,
 		}
-		local color = colors[flag] or beautiful.fg_normal
+		local color = color_list[flag] or beautiful.fg_normal
 		return wibox.widget {
 
 			{
@@ -47,7 +47,7 @@ local calendar_wdgt = wibox.widget {
 
 			},
 			fg     = color,
-			bg     = color_list.bg_normal,
+			bg     = colors.bg_normal,
 			shape  = helpers.rrect(0),
 			-- forced_hight = dpi(300),
 			widget = wibox.container.background
@@ -63,7 +63,7 @@ local wgt           = wibox.widget {
 			margins = dpi(10)
 		},
 		widget = wibox.container.background,
-		bg = color_list.bg_normal,
+		bg = colors.bg_normal,
 		shape = helpers.rrect(0)
 	},
 	widget = wibox.container.margin,
