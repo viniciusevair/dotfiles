@@ -91,7 +91,7 @@ awful.screen.connect_for_each_screen(function(s)
 			layout = wibox.layout.stack
 		},
 		widget = wibox.container.background,
-		bg = color.bg_dark,
+		bg = color.bg_darker,
 	}
 	)
 
