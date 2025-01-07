@@ -1,3 +1,4 @@
+local user = require 'user'
 local awful = require ('awful')
 local wibox = require ('wibox')
 local beautiful = require ('beautiful')
@@ -23,7 +24,7 @@ local create_container = function (img, clr, text, onstatus, fn_on, fn_off)
     shape = helpers.rrect (50)
   }
 
-  local txt = helpers.textbox (color.lightblue, "IosevkaTermNF bold 12", text)
+  local txt = helpers.textbox (color.lightblue, user.font .. " bold 12", text)
   txt.halign = 'center'
   txt.foced_width = dpi (45)
 

@@ -1,3 +1,4 @@
+local user = require 'user'
 local wibox = require('wibox')
 local beautiful = require('beautiful')
 
@@ -11,11 +12,11 @@ local img = helpers.margin(helpers.imagebox(user.user_img, 60, 60), 0, 15, 0, 0)
 local name = wibox.widget {
 	{
 		helpers.margin(
-			helpers.textbox(color.lightblue, "IosevkaTermNF bold 15", user.name),
+			helpers.textbox(color.lightblue, user.font .. " bold 15", user.name),
 			0, 0, 4, 0
 		),
 		helpers.margin(
-			helpers.textbox(color.mid_light, "IosevkaTermNF bold 13", user.host),
+			helpers.textbox(color.mid_light, user.font .. " bold 13", user.host),
 			0, 0, 0, 4
 		),
 		layout = wibox.layout.fixed.vertical

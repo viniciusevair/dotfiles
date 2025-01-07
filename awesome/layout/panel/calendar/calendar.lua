@@ -1,3 +1,4 @@
+local user = require 'user'
 local awful         = require 'awful'
 local wibox         = require('wibox')
 local beautiful     = require('beautiful')
@@ -9,7 +10,7 @@ local colors    = require("themes.colors")
 local calendar_wdgt = wibox.widget {
 	widget       = wibox.widget.calendar.month,
 	date         = os.date("*t"),
-	font         = 'IosevkaTermNF bold 15',
+	font         = user.font .. ' bold 15',
 	flex_height  = true,
 	start_sunday = true,
 	fn_embed     = function(widget, flag, date)
@@ -17,14 +18,14 @@ local calendar_wdgt = wibox.widget {
 			text   = date.day,
 			align  = "center",
 			widget = wibox.widget.textbox,
-			font   = 'IosevkaTermNF bold 15'
+			font   = user.font .. ' bold 15'
 		}
 		local torender = flag == 'focus' and focus_widget or widget
 		if flag == 'header' then
-			torender.font = 'IosevkaTermNF bold ' .. 15
+			torender.font = user.font .. ' bold ' .. 15
 		end
 		if flag == 'weekday' then
-			torender.font = 'IosevkaTermNF bold ' .. 15
+			torender.font = user.font .. ' bold ' .. 15
 		end
 
 		local color_list = {

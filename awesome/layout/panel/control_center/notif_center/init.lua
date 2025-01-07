@@ -1,3 +1,4 @@
+local user = require 'user'
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
@@ -9,7 +10,7 @@ local color = require("themes.colors")
 
 local notifs = require('layout.panel.control_center.notif_center.notifs')
 
-local header_text = helpers.textbox(color.lightblue, "IosevkaTermNF bold 18", "Notifications")
+local header_text = helpers.textbox(color.lightblue, user.font .. " bold 18", "Notifications")
 header_text.valign = 'center'
 header_text.forced_height = dpi(40)
 

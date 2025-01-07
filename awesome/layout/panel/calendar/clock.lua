@@ -1,3 +1,4 @@
+local user = require 'user'
 local awful     = require 'awful'
 local wibox     = require('wibox')
 local beautiful = require('beautiful')
@@ -9,26 +10,26 @@ local color     = require("themes.colors")
 
 local hr = wibox.widget {
 	widget = wibox.widget.textclock,
-	format = '<span color="' .. color.lightblue .. '" font="IosevkaTermNF Bold 65"> %H </span>',
+	format = '<span color="' .. color.lightblue .. '" font="' .. user.font .. ' Bold 65"> %H </span>',
 	refresh = 20,
 }
 
 local min = wibox.widget {
 	widget = wibox.widget.textclock,
-	format = '<span color="' .. color.lightblue .. '" font="IosevkaTermNF Bold 65"> %M </span>',
+	format = '<span color="' .. color.lightblue .. '" font="' .. user.font .. ' Bold 65"> %M </span>',
 	refresh = 20,
 }
 
 local date = wibox.widget {
 	widget = wibox.widget.textclock,
-	format = '<span color="' .. color.fg_normal .. '" font="IosevkaTermNF Bold 20">%A,  %B  %d,  %Y</span>',
+	format = '<span color="' .. color.fg_normal .. '" font="' .. user.font .. ' Bold 20">%A,  %B  %d,  %Y</span>',
 	refresh = 20,
 }
 
 
 
 local dot = function(clr)
-	return helpers.textbox(clr, "IosevkaTermNF 10", '')
+	return helpers.textbox(clr, user.font .. " 10", '')
 end
 
 local sep = wibox.widget { {

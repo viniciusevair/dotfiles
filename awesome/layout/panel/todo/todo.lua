@@ -1,3 +1,4 @@
+local user = require 'user'
 local awful          = require 'awful'
 local wibox          = require 'wibox'
 local gears          = require 'gears'
@@ -7,9 +8,9 @@ local dpi            = beautiful.xresources.apply_dpi
 local color          = require 'themes.colors'
 local helpers        = require 'helpers'
 
-local header         = helpers.textbox(color.lightblue, "IosevkaTermNF bold 16", "To Do List")
-local add            = helpers.textbox(color.green, "IosevkaTermNF bold 18", "    ")
-local remove_all     = helpers.textbox(color.red, "IosevkaTermNF bold 18", "    ")
+local header         = helpers.textbox(color.lightblue, user.font .. " bold 16", "To Do List")
+local add            = helpers.textbox(color.green, user.font .. " bold 18", "    ")
+local remove_all     = helpers.textbox(color.red, user.font .. " bold 18", "    ")
 
 local todocontainer  = wibox.widget {
 	layout = require('modules.overflow').vertical,
@@ -23,22 +24,22 @@ local empty_visible  = true
 local task_done      = 0
 local task_remaining = #todocontainer.children - task_done
 
-local txt_done       = helpers.textbox(color.lightblue, "IosevkaTermNF bold 34", task_done)
-local txt_remaining  = helpers.textbox(color.yellow, "IosevkaTermNF bold 34", task_remaining)
+local txt_done       = helpers.textbox(color.lightblue, user.font .. " bold 34", task_done)
+local txt_remaining  = helpers.textbox(color.yellow, user.font .. " bold 34", task_remaining)
 
 local update         = function()
-	txt_done.markup = helpers.mtext(color.lightblue, "IosevkaTermNF bold 34", task_done)
+	txt_done.markup = helpers.mtext(color.lightblue, user.font .. " bold 34", task_done)
 	if not empty_visible then
-		txt_remaining.markup = helpers.mtext(color.yellow, "IosevkaTermNF bold 34", #todocontainer.children - task_done)
+		txt_remaining.markup = helpers.mtext(color.yellow, user.font .. " bold 34", #todocontainer.children - task_done)
 	else
-		txt_remaining.markup = helpers.mtext(color.yellow, "IosevkaTermNF bold 34",
+		txt_remaining.markup = helpers.mtext(color.yellow, user.font .. " bold 34",
 			'0')
 	end
 end
 
 update()
 
-local promptbox = helpers.textbox(color.mid_light, "IosevkaTermNF bold 16", "       Add new task here")
+local promptbox = helpers.textbox(color.mid_light, user.font .. " bold 16", "       Add new task here")
 local prompt    = wibox.widget {
 	{
 		promptbox,
@@ -65,7 +66,7 @@ local todo_empty = wibox.widget {
 				forced_width = dpi(160),
 				resize = true
 			},
-			helpers.textbox(color.lightblue, "IosevkaTermNF bold 20", "\nNo tasks to do"),
+			helpers.textbox(color.lightblue, user.font .. " bold 20", "\nNo tasks to do"),
 			layout = wibox.layout.fixed.vertical
 		},
 		nil,
@@ -78,8 +79,8 @@ local todo_empty = wibox.widget {
 todocontainer:insert(1, todo_empty)
 
 local create_todo = function(text)
-	local todo = helpers.textbox(color.fg_normal, "IosevkaTermNF 15", text)
-	local checkbox = helpers.textbox(color.blue, "IosevkaTermNF bold 20", ' 󰄱 ')
+	local todo = helpers.textbox(color.fg_normal, user.font .. " 15", text)
+	local checkbox = helpers.textbox(color.blue, user.font .. " bold 20", ' 󰄱 ')
 	checkbox.valign = 'top'
 
 	local final = {
@@ -104,7 +105,7 @@ local create_todo = function(text)
 		if button == 1 then
 			final_todo.done = true
 			if final_todo.done then
-				checkbox.markup = helpers.mtext(color.blue, "IosevkaTermNF bold 20", ' 󰄲 ')
+				checkbox.markup = helpers.mtext(color.blue, user.font .. " bold 20", ' 󰄲 ')
 				task_done = task_done + 1
 				update()
 			end
@@ -138,7 +139,7 @@ local add_todo    = function()
 			todocontainer:remove_widgets(todo_empty)
 			empty_visible = false
 			todocontainer:insert(1, new_todo)
-			promptbox.markup = helpers.mtext(color.mid_light, "IosevkaTermNF bold 16", "       Add new task here")
+			promptbox.markup = helpers.mtext(color.mid_light, user.font .. " bold 16", "       Add new task here")
 			update()
 		end
 
@@ -172,7 +173,7 @@ local task_status           = wibox.widget {
 		helpers.margin(
 			{
 				txt_done,
-				helpers.textbox(color.lightblue, "IosevkaTermNF bold 14", "Tasks\nCompleted"),
+				helpers.textbox(color.lightblue, user.font .. " bold 14", "Tasks\nCompleted"),
 				spacing = dpi(10),
 				layout = wibox.layout.fixed.horizontal
 			},
@@ -192,7 +193,7 @@ local task_status_remaining = wibox.widget {
 		helpers.margin(
 			{
 				txt_remaining,
-				helpers.textbox(color.yellow, "IosevkaTermNF bold 14", "Tasks\nRemaining"),
+				helpers.textbox(color.yellow, user.font .. " bold 14", "Tasks\nRemaining"),
 				spacing = dpi(10),
 				layout = wibox.layout.fixed.horizontal
 			},

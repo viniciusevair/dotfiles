@@ -6,7 +6,7 @@ local dpi = beautiful.xresources.apply_dpi
 local theme                                           = {}
 
 theme.useless_gap                                     = 4
-theme.font                                            = "IosevkaTermNF 12"
+theme.font                                            = user.font .. " 12"
 theme.wallpaper                                       = user.wallpaper
 
 local layout_path                                     = "/usr/share/awesome/themes/default/layouts/"

@@ -1,3 +1,4 @@
+local user = require 'user'
 local awful             = require 'awful'
 local wibox             = require 'wibox'
 local gears             = require 'gears'
@@ -9,8 +10,8 @@ local helpers           = require 'helpers'
 
 --Textbox------
 
-local time              = helpers.textbox(color.blue, "IosevkaTermNF bold 66", "00 : 00")
-local add_timer         = helpers.textbox(color.lightblue, "IosevkaTermNF bold 16", "  Add timer")
+local time              = helpers.textbox(color.blue, user.font .. " bold 66", "00 : 00")
+local add_timer         = helpers.textbox(color.lightblue, user.font .. " bold 16", "  Add timer")
 local set_timer_button  = helpers.textbox(color.magenta, "Ubuntu Nerd Font bold 20", "  󱎫  ")
 local play_pause        = helpers.textbox(color.orange, "Ubuntu Nerd Font  bold 20", "  ")
 local reset             = helpers.textbox(color.red, "Ubuntu Nerd Font  bold 20", "  ")
@@ -128,7 +129,7 @@ set_time = function()
 			time.markup = '<span color="' ..
 					color.blue ..
 					'" font="' ..
-					"IosevkaTermNF bold 66" ..
+					user.font .. " bold 66" ..
 					'">' .. string.format("%02d", minutes) .. " : " .. string.format("%02d", seconds) .. '</span>'
 			input_entered = "-- : --"
 			input_2 = "----"
@@ -144,7 +145,7 @@ set_time = function()
 					input_2 = changeCharacterAtIndex(input_2, character_entered, key)
 					input_entered = string.sub(input_2, 1, 2) .. " : " .. string.sub(input_2, 3, 4)
 					time.markup = '<span color="' ..
-							color.yellow .. '" font="' .. "IosevkaTermNF bold 66" .. '">' .. input_entered .. '</span>'
+							color.yellow .. '" font="' .. user.font .. " bold 66" .. '">' .. input_entered .. '</span>'
 				end
 			end
 		end
@@ -165,7 +166,7 @@ local timer_running = function()
 		local new_second = total_time % 60
 		final_input = string.format("%02d", new_minute) .. " : " .. string.format("%02d", new_second)
 		time.markup = '<span color="' ..
-				color.blue .. '" font="' .. "IosevkaTermNF bold 66" .. '">' .. final_input .. '</span>'
+				color.blue .. '" font="' .. user.font .. " bold 66" .. '">' .. final_input .. '</span>'
 	end
 
 	if total_time == 0 then
@@ -173,7 +174,7 @@ local timer_running = function()
 		(
 			{
 				title = '<span color="' ..
-						color.white .. '" font="IosevkaTermNF Bold 14">󱎫 Timer Widget</span>',
+						color.white .. '" font=user.font .. " Bold 14">󱎫 Timer Widget</span>',
 				text = '<span color="' .. color.white .. '">The timer has ended! . Hope that was a productive time </span>',
 
 				timeout = 5,
@@ -195,7 +196,7 @@ set_timer_button:connect_signal("button::release", function()
 	input_entered = "-- : --"
 	character_entered = 0
 	time.markup = '<span color="' ..
-			color.yellow .. '" font="' .. "IosevkaTermNF bold 66" .. '">' .. "-- : --" .. '</span>'
+			color.yellow .. '" font="' .. user.font .. " bold 66" .. '">' .. "-- : --" .. '</span>'
 	set_time()
 end)
 
@@ -203,7 +204,7 @@ stopwatch_buttons.forward:connect_signal("button::release", function()
 	total_time = total_time + 30
 	final_input = string.format("%02d", math.floor(total_time / 60)) .. " : " .. string.format("%02d", total_time % 60)
 	time.markup = '<span color="' ..
-			color.blue .. '" font="' .. "IosevkaTermNF bold 66" .. '">' .. final_input .. '</span>'
+			color.blue .. '" font="' .. user.font .. " bold 66" .. '">' .. final_input .. '</span>'
 end)
 
 stopwatch_buttons.backward:connect_signal("button::release", function()
@@ -211,7 +212,7 @@ stopwatch_buttons.backward:connect_signal("button::release", function()
 		total_time = total_time - 30
 		final_input = string.format("%02d", math.floor(total_time / 60)) .. " : " .. string.format("%02d", total_time % 60)
 		time.markup = '<span color="' ..
-				color.blue .. '" font="' .. "IosevkaTermNF bold 66" .. '">' .. final_input .. '</span>'
+				color.blue .. '" font="' .. user.font .. " bold 66" .. '">' .. final_input .. '</span>'
 	end
 end)
 
@@ -219,7 +220,7 @@ stopwatch_buttons.reset:connect_signal("button::release", function()
 	total_time = 0
 	final_input = "00 : 00"
 	time.markup = '<span color="' ..
-			color.blue .. '" font="' .. "IosevkaTermNF bold 66" .. '">' .. final_input .. '</span>'
+			color.blue .. '" font="' .. user.font .. " bold 66" .. '">' .. final_input .. '</span>'
 end)
 
 

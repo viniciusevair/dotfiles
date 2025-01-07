@@ -1,3 +1,4 @@
+local user = require 'user'
 local awful = require ('awful')
 local wibox = require ('wibox')
 local beautiful = require ('beautiful')
@@ -31,7 +32,7 @@ local function create_slider_widget (command, icon_code, initial_value, max_valu
       align = "top_left",
       bg = colors.bg_normal,
       fg = colors.mid_light,
-      font = "IosevkaTermNF bold 13",
+      font = user.font .. " bold 13",
     }
 
     value_tooltip:add_to_object (slider)

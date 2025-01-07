@@ -1,3 +1,4 @@
+local user = require 'user'
 local awful = require('awful')
 local beautiful = require('beautiful')
 local wibox = require('wibox')
@@ -14,13 +15,13 @@ art.halign = 'center'
 art.valign = 'center'
 
 --Title
-local title_widget = helpers.textbox(color.lightblue, "IosevkaTermNF bold 15", "Nothing playing")
+local title_widget = helpers.textbox(color.lightblue, user.font .. " bold 15", "Nothing playing")
 title_widget.forced_width = dpi(250)
 title_widget.forced_height = dpi(35)
 title_widget.halign = 'center'
 
 --Artist
-local artist_widget = helpers.textbox(color.mid_light, "IosevkaTermNF 13", "Unknown artist")
+local artist_widget = helpers.textbox(color.mid_light, user.font .. " 13", "Unknown artist")
 artist_widget.forced_width = dpi(250)
 artist_widget.forced_height = dpi(35)
 artist_widget.halign = 'center'
@@ -56,7 +57,7 @@ local media_slider = wibox.widget {
 }
 
 local length_text = wibox.widget {
-  markup = helpers.mtext(color.mid_light, "IosevkaTermNF bold 11", "00:00"),
+  markup = helpers.mtext(color.mid_light, user.font .. " bold 11", "00:00"),
   valign = 'top',
   widget = wibox.widget.textbox,
   forced_height = dpi(15),
@@ -64,7 +65,7 @@ local length_text = wibox.widget {
 }
 
 local position_text = wibox.widget {
-  markup = helpers.mtext(color.mid_light, "IosevkaTermNF bold 11", "00:00"),
+  markup = helpers.mtext(color.mid_light, user.font .. " bold 11", "00:00"),
   align = 'center',
   valign = 'top',
   widget = wibox.widget.textbox,
@@ -92,8 +93,8 @@ end)
 playerctl:connect_signal("metadata",
 function(_, title, artist, album_path, album, new, player_name)
   art:set_image(gears.surface.load_uncached(album_path))
-  title_widget:set_markup_silently(helpers.mtext(color.lightblue, "IosevkaTermNF bold 14", title))
-  artist_widget:set_markup_silently(helpers.mtext(color.mid_light, "IosevkaTermNF 13", artist))
+  title_widget:set_markup_silently(helpers.mtext(color.lightblue, user.font .. " bold 14", title))
+  artist_widget:set_markup_silently(helpers.mtext(color.mid_light, user.font .. " 13", artist))
 end)
 
 playerctl:connect_signal("playback_status", function(_, playing)
@@ -122,7 +123,7 @@ playerctl:connect_signal("position", function(_, interval_sec, length_sec)
     local pos_minutes = math.floor(interval_sec / 60)
     local pos_seconds = math.floor(interval_sec % 60)
     position_text:set_markup_silently(
-    helpers.mtext(color.mid_light, "IosevkaTermNF bold 11",
+    helpers.mtext(color.mid_light, user.font .. " bold 11",
     string.format("%02d:%02d", pos_minutes, pos_seconds))
     )
 
@@ -130,7 +131,7 @@ playerctl:connect_signal("position", function(_, interval_sec, length_sec)
     local len_minutes = math.floor(length_sec / 60)
     local len_seconds = math.floor(length_sec % 60)
     length_text:set_markup_silently(
-    helpers.mtext(color.mid_light, "IosevkaTermNF bold 11",
+    helpers.mtext(color.mid_light, user.font .. " bold 11",
     string.format("%02d:%02d", len_minutes, len_seconds))
     )
   end

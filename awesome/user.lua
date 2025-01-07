@@ -10,6 +10,7 @@ local user = {
   file_manager = "thunar",
   browser      = "firefox",
   editor       = "nvim",
+  font         = "IosevkaTermNF",
 
   wallpaper    = "~/Pictures/Wallpapers/town.jpg",
   icon_path    = os.getenv ("HOME") .. "/.local/share/icons/Tela-circle-brown/scalable/apps/",

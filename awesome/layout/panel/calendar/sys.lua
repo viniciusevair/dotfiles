@@ -4,6 +4,7 @@ local helpers = require ("helpers")
 local wibox = require ("wibox")
 local awful = require ("awful")
 local gears = require ("gears")
+local user = require ("user")
 local dpi = beautiful.xresources.apply_dpi
 
 -- Function to create a progress bar with label
@@ -16,8 +17,6 @@ local function create_progress_widget (name, color)
     widget = wibox.widget.progressbar,
     forced_width = 250,
     forced_height = 20,
-    border_color = colors.magenta,
-    border_width = dpi (2),
     background_color = colors.bg_light,
     color = color,
   })
@@ -27,13 +26,13 @@ local function create_progress_widget (name, color)
     align = "top_left",
     bg = colors.bg_normal,
     fg = colors.mid_light,
-    font = "IosevkaTermNF bold 13",
+    font = user.font .. " bold 13",
   }
 
   controller.tooltip:add_to_object (controller.progress_bar)
 
   -- Label is static, no need to add to controller
-  local label = helpers.textbox (colors.magenta, "IosevkaTermNF bold 16", name)
+  local label = helpers.textbox (colors.magenta, user.font .. " bold 16", name)
   label.forced_width = dpi (50)
 
   -- Final layout for the progress bar and label
