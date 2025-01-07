@@ -34,11 +34,29 @@ end
 
 ---widgets------------------------
 ----------------------------------
-helpers.textbox = function(color, font, text)
-	return wibox.widget {
-		markup = '<span color="' .. color .. '" font="' .. font .. '">' .. text .. '</span>',
-		widget = wibox.widget.textbox
-	}
+function helpers.textbox(color, font, text)
+    local widget = wibox.widget.textbox()
+
+    -- Store formatting properties
+    widget._text_format = { color = color, font = font }
+
+    -- Function to set text and reapply formatting
+    function widget:set_text(new_text)
+        -- Reapply the formatting via markup
+        local formatted_text = string.format(
+            '<span color="%s" font="%s">%s</span>',
+            self._text_format.color,
+            self._text_format.font,
+            new_text
+        )
+        -- Use set_markup to set both the style and the text
+        wibox.widget.textbox.set_markup(self, formatted_text)
+    end
+
+    -- Set the initial text with formatting
+    widget:set_text(text)
+
+    return widget
 end
 
 helpers.imagebox = function(img, height, width)
