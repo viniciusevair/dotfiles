@@ -1,4 +1,4 @@
-local user = require 'user'
+local user = require ('user')
 local awful = require ('awful')
 local wibox = require ('wibox')
 local beautiful = require ('beautiful')

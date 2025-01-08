@@ -10,9 +10,21 @@ local color        = require("themes.colors")
 local user         = require('user')
 local iconpath     = os.getenv("HOME") .. '/.config/awesome/assets/weather_icons/'
 
-local api_key      = "e3578ff20a78750dbfc8f2e9ece0c0d1"
 local city         = "Curitiba"
 local country_code = "BR"
+local api_key_file = os.getenv ("HOME") .. '/.weather_api_key'
+
+local function read_api_key(file_path)
+    local file = io.open(file_path, "r")
+    if not file then
+        return nil, "Unable to open the API key file"
+    end
+    local api_key = file:read("*all"):gsub("%s+", "") -- Read and trim whitespace
+    file:close()
+    return api_key
+end
+
+local api_key = read_api_key (api_key_file)
 local weather_api  = "https://api.openweathermap.org/data/2.5/weather?q=" ..
                      city .. "," .. country_code .. "&appid=" .. api_key ..
                      "&units=metric"
