@@ -214,16 +214,6 @@ awful.keyboard.append_global_keybindings {
   },
 }
 
-awful.keyboard.append_global_keybindings {
-  awful.key {
-    modifiers   = { mod.super },
-    key         = 's',
-    description = 'view previous',
-    group       = 'tag',
-    on_press    = awful.tag.viewprev,
-  },
-}
-
 -- tags related keybindings
 awful.keyboard.append_global_keybindings {
   awful.key {
@@ -412,10 +402,12 @@ awful.keyboard.append_global_keybindings {
     keygroup    = 'numrow',
     description = 'only view tag',
     group       = 'tag',
-    on_press    = function(index)
-      local screen = awful.screen.focused()
-      local tag = screen.tags[index]
+    on_press    = function(key_num)
+      local screen_index = key_num < 6 and 1 or 2
+      local tag_index = (key_num - 1) % 5 + 1
+      local tag = screen[screen_index].tags[tag_index]
       if tag then
+        awful.screen.focus(screen[screen_index])
         tag:view_only()
       end
     end
@@ -426,9 +418,10 @@ awful.keyboard.append_global_keybindings {
     keygroup    = 'numrow',
     description = 'toggle tag',
     group       = 'tag',
-    on_press    = function(index)
-      local screen = awful.screen.focused()
-      local tag = screen.tags[index]
+    on_press    = function(key_num)
+      local screen_index = key_num < 6 and 1 or 2
+      local tag_index = (key_num - 1) % 5 + 1
+      local tag = screen[screen_index].tags[tag_index]
       if tag then
         awful.tag.viewtoggle(tag)
       end
@@ -440,11 +433,14 @@ awful.keyboard.append_global_keybindings {
     keygroup    = 'numrow',
     description = 'move focused client to tag',
     group       = 'tag',
-    on_press    = function(index)
+    on_press    = function(key_num)
       if client.focus then
-        local tag = client.focus.screen.tags[index]
+        local screen_index = key_num < 6 and 1 or 2
+        local tag_index = (key_num - 1) % 5 + 1
+        local tag = screen[screen_index].tags[tag_index]
         if tag then
           client.focus:move_to_tag(tag)
+          awful.screen.focus(screen[screen_index])
         end
       end
     end
@@ -455,9 +451,11 @@ awful.keyboard.append_global_keybindings {
     keygroup    = 'numrow',
     description = 'toggle focused client on tag',
     group       = 'tag',
-    on_press    = function(index)
+    on_press    = function(key_num)
       if client.focus then
-        local tag = client.focus.screen.tags[index]
+        local screen_index = key_num < 6 and 1 or 2
+        local tag_index = (key_num - 1) % 5 + 1
+        local tag = screen[screen_index].tags[tag_index]
         if tag then
           client.focus:toggle_tag(tag)
         end
