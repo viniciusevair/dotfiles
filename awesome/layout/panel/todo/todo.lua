@@ -204,7 +204,7 @@ local task_status_remaining = wibox.widget {
 		shape = helpers.rrect(0)
 	},
 	widget = wibox.container.margin,
-	bottom = dpi(15),
+	bottom = dpi(20),
 	left = dpi(5)
 }
 

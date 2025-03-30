@@ -9,7 +9,7 @@ local media_player = require('layout.panel.control_center.media_player')
 
 local cc = wibox.widget {
 	header,
-	buttons,
+	buttons.main,
 	sliders,
   media_player,
 	notif_center,
