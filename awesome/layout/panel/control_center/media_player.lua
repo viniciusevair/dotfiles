@@ -124,7 +124,7 @@ local previous_value = 0
 
 media_slider:connect_signal ("property::value", function (_, new_value)
   if new_value ~= previous_value then
-    playerctl:set_position (new_value)
+    --playerctl:set_position (new_value)
     previous_value = new_value
   end
 end)
@@ -160,19 +160,19 @@ playerctl:connect_signal ("position", function (_, interval_sec, length_sec)
   end
 end)
 
-media_slider:connect_signal ("mouse::enter", function ()
-  local w = mouse.current_wibox
-  if w then
-    w.cursor = "hand1"
-  end
-end)
-
-media_slider:connect_signal ("mouse::leave", function ()
-  local w = mouse.current_wibox
-  if w then
-    w.cursor = "left_ptr"
-  end
-end)
+--media_slider:connect_signal ("mouse::enter", function ()
+--  local w = mouse.current_wibox
+--  if w then
+--    w.cursor = "hand1"
+--  end
+--end)
+--
+--media_slider:connect_signal ("mouse::leave", function ()
+--  local w = mouse.current_wibox
+--  if w then
+--    w.cursor = "left_ptr"
+--  end
+--end)
 
 local create_container = function (wgt)
   local btn = helpers.margin (
