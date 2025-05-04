@@ -18,7 +18,7 @@ local colors = {
   lightblue     = '#6a7556',  -- Olive tone with gold highlight
   blue          = '#3e4a38',  -- Deep greenish-blue with a touch of gold
   magenta       = '#9c7e6b',  -- Muted gold-pink
-  purple        = '#7f6651',  -- Earthy golden purple tone
+  purple        = '#7f525b',  -- Earthy golden purple tone
 }
 
 return colors
